@@ -3,7 +3,7 @@
 # Get latest from https://github.com/github/gitignore/blob/master/Unity.gitignore
 #
 bloons_tower_offence/[Ll]ibrary/
-bloons_tower_offencee/[Tt]emp/
+bloons_tower_offence/[Tt]emp/
 bloons_tower_offence/[Oo]bj/
 bloons_tower_offence/[Bb]uild/
 bloons_tower_offence/[Bb]uilds/
