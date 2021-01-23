@@ -2,16 +2,16 @@
 #
 # Get latest from https://github.com/github/gitignore/blob/master/Unity.gitignore
 #
-baloon_game/[Ll]ibrary/
-baloon_game/[Tt]emp/
-baloon_game/[Oo]bj/
-baloon_game/[Bb]uild/
-baloon_game/[Bb]uilds/
-baloon_game/[Ll]ogs/
-baloon_game/[Mm]emoryCaptures/
+bloons_tower_offence/[Ll]ibrary/
+bloons_tower_offencee/[Tt]emp/
+bloons_tower_offence/[Oo]bj/
+bloons_tower_offence/[Bb]uild/
+bloons_tower_offence/[Bb]uilds/
+bloons_tower_offence/[Ll]ogs/
+bloons_tower_offence/[Mm]emoryCaptures/
 
 # Asset meta data should only be ignored when the corresponding asset is also ignored
-!baloon game/[Aa]ssets/**/*.meta
+!bloons_tower_offence/[Aa]ssets/**/*.meta
 
 # Uncomment this line if you wish to ignore the asset store tools plugin
 # /[Aa]ssets/AssetStoreTools*
@@ -20,7 +20,7 @@ baloon_game/[Mm]emoryCaptures/
 [Aa]ssets/Plugins/Editor/JetBrains*
 
 # Visual Studio cache directory
-baloon_game/.vs/
+bloons_tower_offence/.vs/
 
 # Gradle cache directory
 .gradle/
