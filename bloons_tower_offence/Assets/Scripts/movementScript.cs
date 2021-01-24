@@ -25,6 +25,14 @@ public class movementScript : MonoBehaviour
     }
     void Update()
     {
+        if (Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.C))
+        {
+            speed = 4f;
+        }
+        else
+        {
+            speed = 12f;
+        }
 
         if (Input.GetKeyDown(KeyCode.R))
         {
@@ -43,7 +51,6 @@ public class movementScript : MonoBehaviour
 
         
 
-        
         controller.Move(move* speed* Time.deltaTime);
 
         if(Input.GetKey("space") && isGrounded)
