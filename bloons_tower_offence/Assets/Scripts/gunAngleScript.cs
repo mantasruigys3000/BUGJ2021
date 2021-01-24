@@ -40,5 +40,9 @@ public class gunAngleScript : MonoBehaviour
                 gun.transform.rotation = Quaternion.Lerp(gun.transform.rotation, centreAngle.transform.rotation, (1f * Time.deltaTime) * 4);
             }
         }
+        else
+        {
+            gun.transform.rotation = Quaternion.Lerp(gun.transform.rotation, centreAngle.transform.rotation, (1f * Time.deltaTime) * 4);
+        }
     }
 }
