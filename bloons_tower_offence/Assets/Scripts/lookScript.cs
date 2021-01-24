@@ -11,8 +11,8 @@ public class lookScript : MonoBehaviour
     
     public GameObject gun;
     */
-    public float mouseSensitivity = 1000f;
-    public float defaultMouseSensitivity = 875f;
+    public float mouseSensitivity;
+    public float defaultMouseSensitivity = 500f;
     public Transform beetleBody;
     float xRot = 0f;
     float fov;
@@ -24,7 +24,8 @@ public class lookScript : MonoBehaviour
         playerCamera = gameObject.GetComponent<Camera>();
         Cursor.visible = false;
         fov = 65f;
-        Cursor.lockState = CursorLockMode.Locked;   
+        Cursor.lockState = CursorLockMode.Locked;
+        mouseSensitivity = defaultMouseSensitivity;
     }
 
     // Update is called once per frame
@@ -32,7 +33,7 @@ public class lookScript : MonoBehaviour
     {
         if (Input.GetMouseButton(1))
         {
-            mouseSensitivity = defaultMouseSensitivity* 3f;
+            mouseSensitivity = defaultMouseSensitivity* 0.8f;
             fov = 40f;
         }
         else

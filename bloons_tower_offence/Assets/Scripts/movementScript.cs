@@ -19,9 +19,25 @@ public class movementScript : MonoBehaviour
     Vector3 move;
     public bool isGrounded;
 
-
+    private void Start()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+    }
     void Update()
     {
+        if (Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.C))
+        {
+            speed = 4f;
+        }
+        else
+        {
+            speed = 12f;
+        }
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            Application.LoadLevel(Application.loadedLevel);
+        }
 
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
 
@@ -35,7 +51,6 @@ public class movementScript : MonoBehaviour
 
         
 
-        
         controller.Move(move* speed* Time.deltaTime);
 
         if(Input.GetKey("space") && isGrounded)
