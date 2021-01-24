@@ -28,7 +28,7 @@ public class movementScript : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.R))
         {
-           Application.LoadLevel(Application.loadedLevel);
+            Application.LoadLevel(Application.loadedLevel);
         }
 
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
