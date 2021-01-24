@@ -19,7 +19,10 @@ public class movementScript : MonoBehaviour
     Vector3 move;
     public bool isGrounded;
 
-
+    private void Start()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+    }
     void Update()
     {
 
