@@ -26,6 +26,11 @@ public class movementScript : MonoBehaviour
     void Update()
     {
 
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+           Application.LoadLevel(Application.loadedLevel);
+        }
+
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
 
         if (isGrounded && velocity.y< 0)
