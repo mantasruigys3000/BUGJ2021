@@ -5,6 +5,8 @@ import threading
 import json
 
 
+
+
 games = []
 
 
@@ -14,7 +16,8 @@ currentPort =  8000
 
 
 def startGameServer(port):
-    os.system(f"start cmd /k .\\bloons_tower_offence.exe {port}")
+    os.system(f"start cmd /k bloons_tower_offence.exe {port}")
+    currentPort += 1
 
 def sendgames(socket):
     data = json.dumps({"code": 1000,"games" : games})
@@ -37,6 +40,9 @@ def dataHandle(socket,data):
         sendgames(socket)
     elif(data["code"] == 69):
         sendgames(socket)
+    elif(data["code"] == 300 ): #host game
+        print("hosting new game...")
+        startGameServer(currentPort)
 
 def thread_listen_data(socket):
     while True:
@@ -68,6 +74,7 @@ s.bind((HOST,PORT))
 if(s.listen(5) == None):
     print("Server Started")
 print("started listening on" + HOST)
+
 
 
 

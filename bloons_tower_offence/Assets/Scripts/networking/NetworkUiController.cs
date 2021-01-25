@@ -9,6 +9,7 @@ public class NetworkUiController : MonoBehaviour
     // Start is called before the first frame update
     public Dropdown gameslist;
     public Button refresh;
+    public Button host;
     public Button join;
     public ServerManager sm;
 
@@ -26,6 +27,7 @@ public class NetworkUiController : MonoBehaviour
         }
         refresh.onClick.AddListener(refreshClick);
         join.onClick.AddListener(joinClick);
+        host.onClick.AddListener(hostClick);
     }
     // Update is called once per frame
     void Update()
@@ -65,6 +67,11 @@ public class NetworkUiController : MonoBehaviour
     public void joinClick() {
         sm.connectToPort = currentGames[gameslist.value].game_port;
         sm.connect();
+
+    }
+
+    public void hostClick() {
+        sm.host();
 
     }
 }

@@ -151,6 +151,15 @@ public class ServerManager : MonoBehaviour {
         }
 	}
 
+	public void host() {
+		string message = JsonUtility.ToJson(
+			new codePacket(300)
+		 );
+		//sm.ConnectToTcpServer();
+		Debug.Log("hosting");
+		SendMessage(message);
+	}
+
 	public void connectGameServerToMaster() {
 		string message = JsonUtility.ToJson(
 			new gameInfo(
