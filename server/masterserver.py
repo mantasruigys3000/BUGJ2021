@@ -5,6 +5,8 @@ import threading
 import json
 
 
+games = []
+
 
 HOST = "localhost"
 PORT = 7755
@@ -14,11 +16,25 @@ currentPort =  8000
 def startGameServer(port):
     os.system(f"start cmd /k .\\bloons_tower_offencet.exe {port}")
 
+def sendgames(socket):
+    data = json.dumps({"code": 1000,"games" : games})
+    socket.send(data.encode());
+
+
+
 
 
 def dataHandle(socket,data):
     print(f"got {data} from {socket}")
+
+    #data = json.dumps({"lst": [1] })
     socket.send(data)
+
+    data = json.loads(data)
+    if(data["code"] == 500):
+        games.append(data)
+        print(str(games))
+        sendgames(socket)
 
 def thread_listen_data(socket):
     while True:

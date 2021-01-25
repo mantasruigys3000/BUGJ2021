@@ -2,6 +2,7 @@ using JetBrains.Annotations;
 using Mirror;
 using Mirror.Websocket;
 using System;
+using System.Collections.Generic;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
@@ -126,8 +127,14 @@ public class ServerManager : MonoBehaviour {
 		}
 
         if (startServer) {
-			startServer = false;
-			manager.StartServer();
+			if (SystemInfo.graphicsDeviceID == 0) {
+				startServer = false;
+				manager.StartServer();
+            } else {
+				startServer = false;
+
+            }
+				
 
         }
 	}
@@ -137,7 +144,8 @@ public class ServerManager : MonoBehaviour {
 			new gameInfo(
 				UnityEngine.Random.value.ToString(),
 				manager.networkAddress,
-				transport.port
+				transport.port,
+				500
 				)
 		 );
 		//sm.ConnectToTcpServer();
@@ -155,14 +163,31 @@ public class ServerManager : MonoBehaviour {
 	
 
 	private void handlePacket(string message) {
+		
 		codePacket data = (codePacket)JsonUtility.FromJson(message, typeof(codePacket));
-		if(data.code == 200) {
+		
+		 
+			if (data.code == 200) {
 
-			startServer = true;
+				startServer = true;
 
 
+
+			}
+		
+		
+
+		if(data.code == 1000) {
+			gameList games = JsonUtility.FromJson<gameList>(message);
+			Debug.Log(JsonUtility.ToJson(games));
+
+			int j;
+
+			for( j = 0; j < games.games.Count; j++) {
+				Debug.Log(games.games[j].game_name);
+            }
 		}
-		Debug.Log(data.code.ToString());
+		
 
 
 
@@ -186,21 +211,38 @@ public class ServerManager : MonoBehaviour {
 
 	public class codePacket {
 		public int code;
+		public List<int> lst;
+
+
 		public codePacket(int code) {
 			this.code = code;
 		}
 	}
 
+	[System.Serializable]
 	public class gameInfo {
 		public string game_name;
 		public string game_ip;
 		public ushort game_port;
-		public gameInfo(string _name, string _ip, ushort _port) {
+		public int code;
+
+		public gameInfo(string _name, string _ip, ushort _port,int _code = 0) {
 			this.game_name = _name;
 			this.game_ip = _ip;
 			this.game_port = _port;
+			this.code = _code;
+
 		}
 	}
+
+	[System.Serializable]
+	public class gameList {
+		public int code;
+		public List<gameInfo> games;
+
+    }
+
+
 
 
 
