@@ -3,6 +3,8 @@ import os
 from  multiprocessing import Process
 import threading
 import json
+import time
+
 
 
 
@@ -12,16 +14,28 @@ games = []
 
 HOST = "localhost"
 PORT = 7755
+global currentPort
 currentPort =  8000
 
+def sendToConnect(socket,port):
+    data = json.dumps({"code": 301,"game_port": port})
+    socket.send(data.encode());
 
-def startGameServer(port):
+
+def startGameServer(port,socket):
     os.system(f"start cmd /k bloons_tower_offence.exe {port}")
-    currentPort += 1
+    global currentPort
+    currentPort =  8000
+    print("\n sleeping")
+    time.sleep(2)
+    print("\n awake")
+    sendToConnect(socket,port)
+
 
 def sendgames(socket):
     data = json.dumps({"code": 1000,"games" : games})
     socket.send(data.encode());
+
 
 
 
@@ -42,7 +56,7 @@ def dataHandle(socket,data):
         sendgames(socket)
     elif(data["code"] == 300 ): #host game
         print("hosting new game...")
-        startGameServer(currentPort)
+        startGameServer(currentPort,socket)
 
 def thread_listen_data(socket):
     while True:

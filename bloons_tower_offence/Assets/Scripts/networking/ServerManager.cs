@@ -211,6 +211,12 @@ public class ServerManager : MonoBehaviour {
 			*/
 
 		}
+
+        if (data.code == 301) {
+			gameInfo _data = (gameInfo)JsonUtility.FromJson(message, typeof(gameInfo));
+			connectToPort = _data.game_port;
+			shouldConnect = true;
+        }
 		
 
 
