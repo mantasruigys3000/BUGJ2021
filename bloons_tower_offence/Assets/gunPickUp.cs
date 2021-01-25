@@ -5,7 +5,9 @@ using Mirror;
 
 public class gunPickUp : NetworkBehaviour
 {
-   
+    [SyncVar]
+    bool hasShotgun = false;
+    public GameObject shotgun;
     // Start is called before the first frame update
     void Start()
     {
@@ -15,7 +17,14 @@ public class gunPickUp : NetworkBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (hasShotgun)
+        {
+            shotgun.SetActive(true);
+        }
+        else
+        {
+            shotgun.SetActive(false);
+        }
     }
 
    
@@ -25,6 +34,7 @@ public class gunPickUp : NetworkBehaviour
         {
             if (other.gameObject.tag == "Shotgun")
             {
+                hasShotgun= true;
                 other.gameObject.GetComponent<CapsuleCollider>().enabled = false;
                 other.gameObject.transform.GetChild(0).gameObject.SetActive(false);
                 other.gameObject.GetComponent<disableScript>().RpcDie();

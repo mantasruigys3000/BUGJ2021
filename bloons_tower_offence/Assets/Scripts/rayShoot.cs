@@ -38,7 +38,7 @@ public class rayShoot : NetworkBehaviour
         //bullet.transform.Rotate(0, 0, 180);
 
 
-        bullet.GetComponent<Rigidbody>().AddForce(bullet.transform.forward * 1000f * Time.deltaTime, ForceMode.Impulse);
+        bullet.GetComponent<Rigidbody>().AddForce(bullet.transform.forward * 10000f * Time.deltaTime, ForceMode.Impulse);
         NetworkServer.Spawn(bullet);
 
         RaycastHit hit;
