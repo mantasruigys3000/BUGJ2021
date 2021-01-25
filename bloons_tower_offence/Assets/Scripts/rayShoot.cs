@@ -55,6 +55,6 @@ public class rayShoot : NetworkBehaviour
             }
            
         }
-        
+
     }
 }
