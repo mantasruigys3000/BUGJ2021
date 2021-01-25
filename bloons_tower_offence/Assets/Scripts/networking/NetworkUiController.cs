@@ -13,6 +13,9 @@ public class NetworkUiController : MonoBehaviour
     public Button join;
     public ServerManager sm;
 
+    public GameObject listButtonPrefab;
+
+
 
     public string currentAddr = "";
     public ushort currentPort = 0;

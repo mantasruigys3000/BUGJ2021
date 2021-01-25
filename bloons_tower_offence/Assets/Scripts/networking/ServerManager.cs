@@ -10,7 +10,7 @@ using System.Threading;
 using UnityEngine;
 
 public class ServerManager : MonoBehaviour {
-	public string ip = "localhost";
+	public string ip = "178.62.91.41";
 	public int port = 7755;
 
 	public NetworkManager manager;
@@ -58,7 +58,7 @@ public class ServerManager : MonoBehaviour {
 	private void ListenForData() {
 		try {
 
-			socketConnection = new TcpClient("localhost", 7755);
+			socketConnection = new TcpClient(ip, 7755);
 			//SendMessage();
 
 			Byte[] bytes = new Byte[1024];
