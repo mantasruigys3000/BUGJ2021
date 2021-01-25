@@ -14,7 +14,7 @@ currentPort =  8000
 
 
 def startGameServer(port):
-    os.system(f"start cmd /k .\\bloons_tower_offencet.exe {port}")
+    os.system(f"start cmd /k .\\bloons_tower_offence.exe {port}")
 
 def sendgames(socket):
     data = json.dumps({"code": 1000,"games" : games})
@@ -34,6 +34,8 @@ def dataHandle(socket,data):
     if(data["code"] == 500):
         games.append(data)
         print(str(games))
+        sendgames(socket)
+    elif(data["code"] == 69):
         sendgames(socket)
 
 def thread_listen_data(socket):

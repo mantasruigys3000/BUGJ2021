@@ -16,8 +16,11 @@ public class ServerManager : MonoBehaviour {
 	public NetworkManager manager;
 	public TelepathyTransport transport;
 
+	public List<gameInfo> currentGames;
+
+
 	bool shouldConnect = false;
-	ushort connectToPort = 8000;
+	public ushort connectToPort = 8000;
 
 	bool startServer = false;
 
@@ -110,6 +113,15 @@ public class ServerManager : MonoBehaviour {
 		}
 	}
 
+	public void getGameList() {
+		string message = JsonUtility.ToJson(
+			new codePacket(69)
+		 );
+		//sm.ConnectToTcpServer();
+		Debug.Log("getting games list");
+		SendMessage(message);
+	}
+
 	private void Update() {
 
 		if (Input.GetKeyDown(KeyCode.Return)) {
@@ -153,7 +165,7 @@ public class ServerManager : MonoBehaviour {
 		SendMessage(message);
 	}
 
-	private void connect() {
+	public  void connect() {
 		transport.port = connectToPort;
 		manager.StartClient();
 
@@ -182,10 +194,13 @@ public class ServerManager : MonoBehaviour {
 			Debug.Log(JsonUtility.ToJson(games));
 
 			int j;
-
+			currentGames = games.games;
+			/*
 			for( j = 0; j < games.games.Count; j++) {
 				Debug.Log(games.games[j].game_name);
             }
+			*/
+
 		}
 		
 
