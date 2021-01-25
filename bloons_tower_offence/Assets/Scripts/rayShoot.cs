@@ -35,6 +35,6 @@ public class rayShoot : MonoBehaviour
         }
         var bullet = Instantiate(bulletPrefab, gunEnd.transform.position, gunEnd.transform.rotation);
         bullet.transform.LookAt(cam.transform.forward);
-        bullet.GetComponent<Rigidbody>().velocity = (hit.point - gunEnd.transform.position).normalized * 200;
+        bullet.GetComponent<Rigidbody>().velocity = (hit.point - gunEnd.transform.position).normalized * 20;
     }
 }
