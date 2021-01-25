@@ -253,6 +253,8 @@ GameObject:
   - component: {fileID: 5280712795396276684}
   - component: {fileID: 5183298998402040575}
   - component: {fileID: 2172681566166154197}
+  - component: {fileID: 2640549374717953019}
+  - component: {fileID: 3991159457966456143}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -428,6 +430,34 @@ MonoBehaviour:
   bulletPrefab: {fileID: 7967485787756778002, guid: 3dd1c6ab9f3f54c4ea2cf50794adfcd4,
     type: 3}
   gunEnd: {fileID: 6171019612025219453}
+--- !u!114 &2640549374717953019
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6171019611660958571}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 797de94dc70cdc846926aa48020a7df7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+--- !u!136 &3991159457966456143
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6171019611660958571}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.54089785
+  m_Height: 2.0779986
+  m_Direction: 1
+  m_Center: {x: 0, y: -0.0060372353, z: 0.0009884834}
 --- !u!1 &6171019611677568808
 GameObject:
   m_ObjectHideFlags: 0
@@ -633,8 +663,6 @@ GameObject:
   - component: {fileID: 6171019612224417897}
   - component: {fileID: 6171019612224417898}
   - component: {fileID: 6171019612224417879}
-  - component: {fileID: 6171019612224417878}
-  - component: {fileID: 4035082432637574519}
   m_Layer: 0
   m_Name: Raygun
   m_TagString: Untagged
@@ -739,41 +767,6 @@ MonoBehaviour:
   gun: {fileID: 6171019612224417900}
   cam: {fileID: 6171019612520817236}
   player: {fileID: 6171019611660958571}
---- !u!114 &6171019612224417878
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6171019612224417900}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ebccb9b59405a9a4f988862807388ff9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  syncMode: 0
-  syncInterval: 0.1
-  cam: {fileID: 6171019612520817236}
-  range: 100
-  bulletPrefab: {fileID: 7967485787756778002, guid: 3dd1c6ab9f3f54c4ea2cf50794adfcd4,
-    type: 3}
-  gunEnd: {fileID: 6171019612025219453}
---- !u!114 &4035082432637574519
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6171019612224417900}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sceneId: 0
-  serverOnly: 0
-  m_AssetId: 
-  hasSpawned: 0
 --- !u!1 &6171019612322176385
 GameObject:
   m_ObjectHideFlags: 0
@@ -785,14 +778,13 @@ GameObject:
   - component: {fileID: 6171019612322176384}
   - component: {fileID: 6171019612322176397}
   - component: {fileID: 6171019612322176398}
-  - component: {fileID: 6171019612322176399}
   m_Layer: 0
   m_Name: Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6171019612322176384
 Transform:
   m_ObjectHideFlags: 0
@@ -856,20 +848,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &6171019612322176399
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6171019612322176385}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6171019612457974249
 GameObject:
   m_ObjectHideFlags: 0

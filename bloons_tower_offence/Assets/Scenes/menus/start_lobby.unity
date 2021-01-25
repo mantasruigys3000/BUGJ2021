@@ -231,7 +231,12 @@ PrefabInstance:
     - target: {fileID: 8913386531832521922, guid: 1d63cd9bfc63e8d4ea06b784a77e93e0,
         type: 3}
       propertyPath: onlineScene
-      value: Assets/Scenes/TeoScene 1.unity
+      value: Assets/Scenes/menus/TeoScene 1.unity
+      objectReference: {fileID: 0}
+    - target: {fileID: 8913386531832521922, guid: 1d63cd9bfc63e8d4ea06b784a77e93e0,
+        type: 3}
+      propertyPath: offlineScene
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8913386531832521922, guid: 1d63cd9bfc63e8d4ea06b784a77e93e0,
         type: 3}
