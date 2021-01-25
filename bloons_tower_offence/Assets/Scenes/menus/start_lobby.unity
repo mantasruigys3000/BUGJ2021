@@ -231,12 +231,18 @@ PrefabInstance:
     - target: {fileID: 8913386531832521922, guid: 1d63cd9bfc63e8d4ea06b784a77e93e0,
         type: 3}
       propertyPath: onlineScene
-      value: Assets/Scenes/menus/start_lobby.unity
+      value: Assets/Scenes/TeoScene 1.unity
       objectReference: {fileID: 0}
     - target: {fileID: 8913386531832521922, guid: 1d63cd9bfc63e8d4ea06b784a77e93e0,
         type: 3}
+      propertyPath: playerPrefab
+      value: 
+      objectReference: {fileID: 6171019611660958571, guid: e32fc8b6fb842cc43b93746cb5ea71cd,
+        type: 3}
+    - target: {fileID: 8913386531832521922, guid: 1d63cd9bfc63e8d4ea06b784a77e93e0,
+        type: 3}
       propertyPath: networkAddress
-      value: 178.62.91.41
+      value: localhost
       objectReference: {fileID: 0}
     - target: {fileID: 8913386531832521922, guid: 1d63cd9bfc63e8d4ea06b784a77e93e0,
         type: 3}
@@ -361,7 +367,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1184015002}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c021dd8520c8f0742bb4f12c0e0b712c, type: 3}
   m_Name: 

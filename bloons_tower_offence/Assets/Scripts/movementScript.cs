@@ -1,8 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Mirror;
 
-public class movementScript : MonoBehaviour
+
+public class movementScript : NetworkBehaviour
 {
     public CharacterController controller;
     public float speed = 12f;
@@ -19,8 +21,19 @@ public class movementScript : MonoBehaviour
     Vector3 move;
     public bool isGrounded;
 
+    // To disable
+    public Camera cam;
+    
+
+
     private void Start()
     {
+        if (!isLocalPlayer) {
+            cam.enabled = false;
+            cam.GetComponent<lookScript>().enabled = false;
+
+            this.enabled = false;
+        }
         Cursor.lockState = CursorLockMode.Locked;
     }
     void Update()
@@ -62,4 +75,6 @@ public class movementScript : MonoBehaviour
         controller.Move(velocity * Time.deltaTime);
 
     }
+
+    
 }

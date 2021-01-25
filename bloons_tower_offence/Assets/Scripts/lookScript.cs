@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+
 public class lookScript : MonoBehaviour
 {
     /*
@@ -21,6 +23,8 @@ public class lookScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
+       
         playerCamera = gameObject.GetComponent<Camera>();
         Cursor.visible = false;
         fov = 65f;

@@ -1,8 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Mirror;
 
-public class rayShoot : MonoBehaviour
+
+public class rayShoot : NetworkBehaviour
 {
     public Camera cam;
     public float range = 100f;
@@ -13,7 +15,10 @@ public class rayShoot : MonoBehaviour
 
     void Start()
     {
-        
+        if (!isLocalPlayer) {
+            this.enabled = false;
+
+        }
     }
 
     // Update is called once per frame
@@ -21,20 +26,35 @@ public class rayShoot : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            Shoot();
+            CmdShoot();
         }
     }
 
-    void Shoot()
+    [Command]
+    void CmdShoot()
     {
+
+        GameObject bullet = Instantiate(bulletPrefab, gunEnd.transform.position, transform.rotation);
+        //bullet.transform.Rotate(0, 0, 180);
+
+
+        bullet.GetComponent<Rigidbody>().AddForce(bullet.transform.forward * 1000f * Time.deltaTime, ForceMode.Impulse);
+        NetworkServer.Spawn(bullet);
+
         RaycastHit hit;
         if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, range))
         {
-            Debug.Log(hit);
+            
+
+
+            Debug.Log(hit.collider.gameObject.name);
+
+            if(hit.collider.gameObject.tag == "Player") {
+                string id = hit.collider.gameObject.GetComponent<NetworkIdentity>().netId.ToString();
+                CustomNetworkManager.getPlayer(id).takeDamage();
+            }
            
         }
-        var bullet = Instantiate(bulletPrefab, gunEnd.transform.position, gunEnd.transform.rotation);
-        bullet.transform.LookAt(cam.transform.forward);
-        bullet.GetComponent<Rigidbody>().velocity = (hit.point - gunEnd.transform.position).normalized * 200;
+        
     }
 }
