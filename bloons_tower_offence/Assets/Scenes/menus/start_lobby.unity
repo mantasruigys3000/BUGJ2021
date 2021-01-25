@@ -249,6 +249,17 @@ PrefabInstance:
       propertyPath: startOnHeadless
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8913386531832521922, guid: 1d63cd9bfc63e8d4ea06b784a77e93e0,
+        type: 3}
+      propertyPath: spawnPrefabs.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8913386531832521922, guid: 1d63cd9bfc63e8d4ea06b784a77e93e0,
+        type: 3}
+      propertyPath: spawnPrefabs.Array.data[0]
+      value: 
+      objectReference: {fileID: 7967485787756778002, guid: 3dd1c6ab9f3f54c4ea2cf50794adfcd4,
+        type: 3}
     - target: {fileID: 8913386531832521923, guid: 1d63cd9bfc63e8d4ea06b784a77e93e0,
         type: 3}
       propertyPath: m_RootOrder
