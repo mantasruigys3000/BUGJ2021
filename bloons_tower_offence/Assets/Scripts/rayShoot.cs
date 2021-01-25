@@ -30,9 +30,11 @@ public class rayShoot : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, range))
         {
-            var bullet = Instantiate(bulletPrefab, gunEnd.transform.position, gunEnd.transform.rotation);
-            bullet.transform.LookAt(hit.transform);
-            bullet.GetComponent<Rigidbody>().velocity = (hit.point - gunEnd.transform.position).normalized * 100;
+            Debug.Log(hit);
+           
         }
+        var bullet = Instantiate(bulletPrefab, gunEnd.transform.position, gunEnd.transform.rotation);
+        bullet.transform.LookAt(cam.transform.forward);
+        bullet.GetComponent<Rigidbody>().velocity = (hit.point - gunEnd.transform.position).normalized * 200;
     }
 }
