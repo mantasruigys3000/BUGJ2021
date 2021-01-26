@@ -30,7 +30,7 @@ def startGameServer(port,socket,name):
         os.system(f"start cmd /k bloons_tower_offence.exe {port} {name}")
 
     global currentPort
-    currentPort =  8000
+    currentPort += 1
     print("\n sleeping")
     time.sleep(2)
     print("\n awake")

@@ -13,6 +13,8 @@ public class ListButton : MonoBehaviour
     public Text players;
     public Text max_players;
     public NetworkUiController ui_controller;
+    public int index;
+
 
 
 }

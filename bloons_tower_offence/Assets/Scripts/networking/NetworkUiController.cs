@@ -14,6 +14,7 @@ public class NetworkUiController : MonoBehaviour
     public ServerManager sm;
     public InputField name;
     public Text name_error;
+    int buttonClicked;
 
 
     public GameObject listButtonPrefab;
@@ -54,6 +55,9 @@ public class NetworkUiController : MonoBehaviour
 
         currentGames = sm.currentGames;
 
+        List<Button> buttons = new List<Button>();
+        
+
         for (int i = 0; i < currentGames.Count; i++) {
             ServerManager.gameInfo game = currentGames[i];
             Debug.Log("creating button");
@@ -63,7 +67,20 @@ public class NetworkUiController : MonoBehaviour
             //lstbtn.map_name.text = "Dust 2";
 
             button.GetComponent<RectTransform>().anchoredPosition = new Vector2(8.5f, 280 - (i * 150));
+            lstbtn.index = i;
+            buttons.Add(button.GetComponent<Button>());
 
+
+
+
+
+
+        }
+
+        //for each button
+        for(int b = 0; b < buttons.Count; b++) {
+            int temp = b;
+            buttons[b].onClick.AddListener(() => { buttonClicked = temp; }) ;
 
         }
 
@@ -99,7 +116,7 @@ public class NetworkUiController : MonoBehaviour
     }
 
     public void joinClick() {
-        //sm.connectToPort = currentGames[gameslist.value].game_port;
+        sm.connectToPort = currentGames[buttonClicked].game_port;
         sm.connect();
 
     }
@@ -111,6 +128,11 @@ public class NetworkUiController : MonoBehaviour
 
         }
         sm.host(name.text);
+
+    }
+
+    public void pressListButton() {
+        Debug.Log(this);
 
     }
 }
