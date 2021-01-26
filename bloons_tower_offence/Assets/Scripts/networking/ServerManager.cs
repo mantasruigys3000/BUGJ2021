@@ -151,9 +151,9 @@ public class ServerManager : MonoBehaviour {
         }
 	}
 
-	public void host() {
+	public void host(string name) {
 		string message = JsonUtility.ToJson(
-			new codePacket(300)
+			new basicPacket(300,name)
 		 );
 		//sm.ConnectToTcpServer();
 		Debug.Log("hosting");
@@ -163,7 +163,7 @@ public class ServerManager : MonoBehaviour {
 	public void connectGameServerToMaster() {
 		string message = JsonUtility.ToJson(
 			new gameInfo(
-				UnityEngine.Random.value.ToString(),
+				Environment.GetCommandLineArgs()[2],
 				manager.networkAddress,
 				transport.port,
 				500

@@ -22,8 +22,8 @@ def sendToConnect(socket,port):
     socket.send(data.encode());
 
 
-def startGameServer(port,socket):
-    os.system(f"start cmd /k bloons_tower_offence.exe {port}")
+def startGameServer(port,socket,name):
+    os.system(f"start cmd /k bloons_tower_offence.exe {port} {name}")
     global currentPort
     currentPort =  8000
     print("\n sleeping")
@@ -56,7 +56,7 @@ def dataHandle(socket,data):
         sendgames(socket)
     elif(data["code"] == 300 ): #host game
         print("hosting new game...")
-        startGameServer(currentPort,socket)
+        startGameServer(currentPort,socket,data["message"])
 
 def thread_listen_data(socket):
     while True:

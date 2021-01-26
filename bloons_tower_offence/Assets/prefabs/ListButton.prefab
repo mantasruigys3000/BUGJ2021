@@ -555,6 +555,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0affa5728b925c4e870d293337f9605, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lobby: {fileID: 0}
+  lobby_name: {fileID: 4931989825136159967}
+  map: {fileID: 0}
+  map_name: {fileID: 4931989824235211549}
+  players: {fileID: 4931989824515459512}
+  max_players: {fileID: 4931989823230753820}
+  ui_controller: {fileID: 0}
 --- !u!1 &4931989824515459514
 GameObject:
   m_ObjectHideFlags: 0

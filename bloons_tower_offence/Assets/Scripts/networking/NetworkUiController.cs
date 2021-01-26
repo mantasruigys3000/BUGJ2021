@@ -12,6 +12,9 @@ public class NetworkUiController : MonoBehaviour
     public Button host;
     public Button join;
     public ServerManager sm;
+    public InputField name;
+    public Text name_error;
+
 
     public GameObject listButtonPrefab;
 
@@ -52,8 +55,13 @@ public class NetworkUiController : MonoBehaviour
         currentGames = sm.currentGames;
 
         for (int i = 0; i < currentGames.Count; i++) {
+            ServerManager.gameInfo game = currentGames[i];
             Debug.Log("creating button");
             GameObject button = Instantiate(listButtonPrefab, gameslist.transform);
+            ListButton lstbtn = button.GetComponent<ListButton>();
+            lstbtn.lobby_name.text = game.game_name + "'s game";
+            //lstbtn.map_name.text = "Dust 2";
+
             button.GetComponent<RectTransform>().anchoredPosition = new Vector2(8.5f, 280 - (i * 150));
 
 
@@ -97,7 +105,12 @@ public class NetworkUiController : MonoBehaviour
     }
 
     public void hostClick() {
-        sm.host();
+        if(name.text == "") {
+            name_error.enabled = true;
+            return;
+
+        }
+        sm.host(name.text);
 
     }
 }
