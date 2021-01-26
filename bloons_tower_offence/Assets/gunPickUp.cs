@@ -17,14 +17,7 @@ public class gunPickUp : NetworkBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (hasShotgun)
-        {
-            shotgun.SetActive(true);
-        }
-        else
-        {
-            shotgun.SetActive(false);
-        }
+        
     }
 
    
@@ -32,14 +25,31 @@ public class gunPickUp : NetworkBehaviour
     {
         if (isServer)
         {
-            if (other.gameObject.tag == "Shotgun")
+            if (other.gameObject.tag == "rayGun")
             {
-                hasShotgun= true;
+                gameObject.GetComponent<NetworkPlayer>().rayAmmo += 10;
                 other.gameObject.GetComponent<CapsuleCollider>().enabled = false;
                 other.gameObject.transform.GetChild(0).gameObject.SetActive(false);
                 other.gameObject.GetComponent<disableScript>().RpcDie();
                 StartCoroutine(nameof(waiterBot),other.gameObject);
             }
+            if (other.gameObject.tag == "nailGun")
+            {
+                gameObject.GetComponent<NetworkPlayer>().nailAmmo += 10;
+                other.gameObject.GetComponent<CapsuleCollider>().enabled = false;
+                other.gameObject.transform.GetChild(0).gameObject.SetActive(false);
+                other.gameObject.GetComponent<disableScript>().RpcDie();
+                StartCoroutine(nameof(waiterBot), other.gameObject);
+            }
+            if (other.gameObject.tag == "rocketGun")
+            {
+                gameObject.GetComponent<NetworkPlayer>().rocketAmmo += 10;
+                other.gameObject.GetComponent<CapsuleCollider>().enabled = false;
+                other.gameObject.transform.GetChild(0).gameObject.SetActive(false);
+                other.gameObject.GetComponent<disableScript>().RpcDie();
+                StartCoroutine(nameof(waiterBot), other.gameObject);
+            }
+
         }
       
         
