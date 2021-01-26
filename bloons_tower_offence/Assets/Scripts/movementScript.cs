@@ -54,15 +54,17 @@ public class movementScript : NetworkBehaviour
 
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
 
+        //put here if you want to make it only on ground
         if (isGrounded && velocity.y< 0)
         {
-            x = Input.GetAxis("Horizontal");
             z = Input.GetAxis("Vertical");
-            move = transform.right * x + transform.forward * z;
+            x = Input.GetAxis("Horizontal");
+            
+
+
             velocity.y = -2f;
         }
-
-        
+        move = transform.right * x + transform.forward * z;
 
         controller.Move(move* speed* Time.deltaTime);
 

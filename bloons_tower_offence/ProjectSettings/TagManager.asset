@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Particles
   - Shotgun
+  - nailGun
+  - rayGun
+  - rocketGun
   layers:
   - Default
   - TransparentFX
