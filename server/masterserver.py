@@ -83,7 +83,7 @@ def sendconfirm(socket):
 #START APPLICATION
 
 s = socket.socket(socket.AF_INET,socket.SOCK_STREAM) 
-s.bind((HOST,PORT))
+s.bind(('',PORT))
 
 if(s.listen(5) == None):
     print("Server Started")

@@ -1638,6 +1638,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8913386531832521922, guid: 1d63cd9bfc63e8d4ea06b784a77e93e0,
+        type: 3}
+      propertyPath: onlineScene
+      value: Assets/Scenes/menus/TeoScene 1.unity
+      objectReference: {fileID: 0}
     - target: {fileID: 8913386531832521923, guid: 1d63cd9bfc63e8d4ea06b784a77e93e0,
         type: 3}
       propertyPath: m_RootOrder
@@ -1698,7 +1703,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: Manager
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8913386531832521920, guid: 1d63cd9bfc63e8d4ea06b784a77e93e0, type: 3}
+    - {fileID: 1184015003, guid: 1d63cd9bfc63e8d4ea06b784a77e93e0, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 1d63cd9bfc63e8d4ea06b784a77e93e0, type: 3}
 --- !u!1 &800369333
 GameObject:

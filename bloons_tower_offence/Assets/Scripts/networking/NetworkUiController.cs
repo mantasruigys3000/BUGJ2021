@@ -41,7 +41,9 @@ public class NetworkUiController : MonoBehaviour
     }
 
     public IEnumerator setGames() {
+        
         yield return new WaitForSeconds(2);
+        /*
         currentGames = sm.currentGames;
 
         gameslist.ClearOptions();
@@ -55,6 +57,8 @@ public class NetworkUiController : MonoBehaviour
         }
 
         gameslist.AddOptions(options);
+        */
+
 
 
 
