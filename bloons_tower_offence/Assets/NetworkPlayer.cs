@@ -8,6 +8,7 @@ public class NetworkPlayer : NetworkBehaviour
 {
     [SyncVar]
     float health = 100f;
+    
 
     void Start()
     {

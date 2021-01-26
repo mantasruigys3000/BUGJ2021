@@ -32,6 +32,7 @@ public class CustomNetworkManager : NetworkManager
         NetworkServer.AddPlayerForConnection(conn, player);
         players.Add(conn.identity.netId.ToString(),player.GetComponent<NetworkPlayer>());
         Debug.Log("Added player " + conn.identity.netId.ToString());
+        //Debug.Log(players[conn.identity.netId.ToString()].playerName);
         //Debug.Log(getPlayer(conn.identity.netId.ToString()));
 
 
@@ -42,7 +43,10 @@ public class CustomNetworkManager : NetworkManager
 
     public override void OnStartServer() {
         base.OnStartServer();
-        sm.connectGameServerToMaster();
+        if(sm != null) {
+            //sm.connectGameServerToMaster();
+        }
+        
         players = new Dictionary<string, NetworkPlayer>();
 
 
