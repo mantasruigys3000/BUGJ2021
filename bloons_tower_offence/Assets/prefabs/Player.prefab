@@ -808,9 +808,12 @@ MonoBehaviour:
   rayAmmo: 0
   nailAmmo: 0
   rocketAmmo: 0
+  chosenWpn: 0
+  isDead: 0
   rayGun: {fileID: 6171019612224417900}
   nailGun: {fileID: 1202453017093325285}
   rocketGun: {fileID: 642529398346119568}
+  model: {fileID: 837686744347218456}
 --- !u!114 &2172681566166154197
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1658,11 +1661,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: player_model_001
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f6a72461d22f07c4e8e3e7b0309a61e4,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f6a72461d22f07c4e8e3e7b0309a61e4, type: 3}
 --- !u!4 &66391859063081122 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: f6a72461d22f07c4e8e3e7b0309a61e4,
+    type: 3}
+  m_PrefabInstance: {fileID: 531818888968777545}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &837686744347218456 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: f6a72461d22f07c4e8e3e7b0309a61e4,
     type: 3}
   m_PrefabInstance: {fileID: 531818888968777545}
   m_PrefabAsset: {fileID: 0}

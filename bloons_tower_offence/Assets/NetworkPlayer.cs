@@ -16,10 +16,15 @@ public class NetworkPlayer : NetworkBehaviour
     public int rocketAmmo = 0;
     [SyncVar]
     public int chosenWpn = 0;
+    [SyncVar]
+    public bool isDead = false;
+
 
     public GameObject rayGun;
     public GameObject nailGun;
     public GameObject rocketGun;
+    public GameObject model;
+
 
 
     void Start()
@@ -30,46 +35,53 @@ public class NetworkPlayer : NetworkBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            CmdchangeWeapon(1);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            CmdchangeWeapon(2);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            CmdchangeWeapon(3);
-        }
+        if (!isDead) {
+            if (Input.GetKeyDown(KeyCode.Alpha1)) {
+                CmdchangeWeapon(1);
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha2)) {
+                CmdchangeWeapon(2);
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha3)) {
+                CmdchangeWeapon(3);
+            }
 
-        if (rayAmmo > 0 && chosenWpn== 1)
-        {
-            rayGun.SetActive(true);
-            nailGun.SetActive(false);
-            rocketGun.SetActive(false);
-        }
+            if (rayAmmo > 0 && chosenWpn == 1) {
+                rayGun.SetActive(true);
+                nailGun.SetActive(false);
+                rocketGun.SetActive(false);
+            }
 
-        if (nailAmmo > 0 && chosenWpn == 2)
-        {
-            rayGun.SetActive(false);
-            nailGun.SetActive(true);
-            rocketGun.SetActive(false);
-        }
+            if (nailAmmo > 0 && chosenWpn == 2) {
+                rayGun.SetActive(false);
+                nailGun.SetActive(true);
+                rocketGun.SetActive(false);
+            }
 
-        if (rocketAmmo > 0 && chosenWpn == 3)
-        {
-            rayGun.SetActive(false);
-            nailGun.SetActive(false);
-            rocketGun.SetActive(true);
+            if (rocketAmmo > 0 && chosenWpn == 3) {
+                rayGun.SetActive(false);
+                nailGun.SetActive(false);
+                rocketGun.SetActive(true);
+            }
         }
+            
+
+        if (isLocalPlayer) {
+            if (health <= 0) {
+                CmdDie();
+            }
+        }
+        
 
     }
            
     [Command]
     public void CmdchangeWeapon(int weaponNr)
     {
-        chosenWpn = weaponNr;
+        if (!isDead) {
+            chosenWpn = weaponNr;
+        }
+        
     }
     
     public void takeDamage() {
@@ -78,5 +90,25 @@ public class NetworkPlayer : NetworkBehaviour
 
     }
 
+    [Command]
+    public void CmdDie() {
+        isDead = true;
+
+        
+        rayGun.SetActive(false);
+        nailGun.SetActive(false);
+        rocketGun.SetActive(false);
+        model.SetActive(false);
+        RpcDie();
+    }
+
+    [ClientRpc]
+    public void RpcDie() {
+
+        rayGun.SetActive(false);
+        nailGun.SetActive(false);
+        rocketGun.SetActive(false);
+        model.SetActive(false);
+    }
 
 }
