@@ -4,6 +4,7 @@ from  multiprocessing import Process
 import threading
 import json
 import time
+from sys import platform
 
 
 
@@ -23,7 +24,11 @@ def sendToConnect(socket,port):
 
 
 def startGameServer(port,socket,name):
-    os.system(f"start cmd /k bloons_tower_offence.exe {port} {name}")
+    if platform == "linux" or platform == "linux2":
+        os.system(f"./server.x86_64 {port} {name} &")
+    else:
+        os.system(f"start cmd /k bloons_tower_offence.exe {port} {name}")
+
     global currentPort
     currentPort =  8000
     print("\n sleeping")
