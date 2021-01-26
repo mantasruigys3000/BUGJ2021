@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class NetworkUiController : MonoBehaviour
 {
     // Start is called before the first frame update
-    public Dropdown gameslist;
+    public GameObject gameslist;
     public Button refresh;
     public Button host;
     public Button join;
@@ -43,6 +43,23 @@ public class NetworkUiController : MonoBehaviour
     public IEnumerator setGames() {
         
         yield return new WaitForSeconds(2);
+
+        for(int c = 0; c < gameslist.transform.childCount; c++) {
+            GameObject.Destroy(gameslist.transform.GetChild(c).gameObject);
+
+        }
+
+        currentGames = sm.currentGames;
+
+        for (int i = 0; i < currentGames.Count; i++) {
+            Debug.Log("creating button");
+            GameObject button = Instantiate(listButtonPrefab, gameslist.transform);
+            button.GetComponent<RectTransform>().anchoredPosition = new Vector2(8.5f, 280 - (i * 150));
+
+
+        }
+
+
         /*
         currentGames = sm.currentGames;
 
@@ -62,6 +79,8 @@ public class NetworkUiController : MonoBehaviour
 
 
 
+
+
     }
 
     public void refreshClick() {
@@ -72,7 +91,7 @@ public class NetworkUiController : MonoBehaviour
     }
 
     public void joinClick() {
-        sm.connectToPort = currentGames[gameslist.value].game_port;
+        //sm.connectToPort = currentGames[gameslist.value].game_port;
         sm.connect();
 
     }

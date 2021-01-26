@@ -10,7 +10,7 @@ using System.Threading;
 using UnityEngine;
 
 public class ServerManager : MonoBehaviour {
-	public string ip = "178.62.91.41";
+	public string ip = "localhost";
 	public int port = 7755;
 
 	public NetworkManager manager;
