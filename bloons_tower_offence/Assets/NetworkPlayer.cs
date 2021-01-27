@@ -18,18 +18,28 @@ public class NetworkPlayer : NetworkBehaviour
     public int chosenWpn = 0;
     [SyncVar]
     public bool isDead = false;
+    [SyncVar]
+    public int points;
+    [SyncVar]
+    public string playerName;
+
+
+   
 
 
     public GameObject rayGun;
     public GameObject nailGun;
     public GameObject rocketGun;
     public GameObject model;
+    public Vector3 spawnPoint;
+
 
 
 
     void Start()
     {
-        
+        spawnPoint = new Vector3(-10.6700001f, 2.66000009f, -22.1499996f);
+        playerName = GetComponent<NetworkIdentity>().netId.ToString();
     }
 
     // Update is called once per frame
@@ -84,9 +94,16 @@ public class NetworkPlayer : NetworkBehaviour
         
     }
     
-    public void takeDamage() {
+    //MUST BE CALLED FROM A COMMAND
+    public void takeDamage(string _id = null) {
         health -= 10;
         Debug.Log(gameObject.name + " " + health.ToString());
+        if (health <= 0) {
+            if (_id != null) {
+                CustomNetworkManager.players[_id].addPoint();
+            }
+        }
+        
 
     }
 
@@ -94,21 +111,74 @@ public class NetworkPlayer : NetworkBehaviour
     public void CmdDie() {
         isDead = true;
 
-        
+        gameObject.GetComponent<CharacterController>().enabled = false;
+        gameObject.GetComponent<CapsuleCollider>().enabled = false;
+        gameObject.GetComponent<movementScript>().enabled = false;
         rayGun.SetActive(false);
         nailGun.SetActive(false);
         rocketGun.SetActive(false);
         model.SetActive(false);
+        StartCoroutine(nameof(repsawnTimer));
+        
+
         RpcDie();
     }
 
     [ClientRpc]
     public void RpcDie() {
-
+        gameObject.GetComponent<CharacterController>().enabled = false;
+        gameObject.GetComponent<CapsuleCollider>().enabled = false;
+        gameObject.GetComponent<movementScript>().enabled = false;
         rayGun.SetActive(false);
         nailGun.SetActive(false);
         rocketGun.SetActive(false);
         model.SetActive(false);
     }
+
+    public IEnumerator repsawnTimer() {
+        yield return new WaitForSeconds(3);
+        isDead = false;
+        health = 100;
+        rayAmmo = 0;
+        nailAmmo = 0;
+        rocketAmmo = 0;
+        chosenWpn = 0;
+
+
+        gameObject.GetComponent<CharacterController>().enabled = true;
+        gameObject.GetComponent<CapsuleCollider>().enabled = true;
+        //gameObject.GetComponent<movementScript>().enabled = true;
+        rayGun.SetActive(false);
+        nailGun.SetActive(false);
+        rocketGun.SetActive(false);
+        model.SetActive(true);
+        RpcRespawn();
+
+    }
+
+   
+   
+    [ClientRpc]
+    public void RpcRespawn() {
+        if (isLocalPlayer) {
+            gameObject.GetComponent<movementScript>().enabled = true;
+            gameObject.transform.position = spawnPoint;
+        }
+        gameObject.GetComponent<CharacterController>().enabled = true;
+        gameObject.GetComponent<CapsuleCollider>().enabled = true;
+        
+        rayGun.SetActive(false);
+        nailGun.SetActive(false);
+        rocketGun.SetActive(false);
+        model.SetActive(true);
+    }
+
+    
+    public void addPoint() {
+        points += 1;
+        CustomNetworkManager.checkWin();
+
+    }
+
 
 }

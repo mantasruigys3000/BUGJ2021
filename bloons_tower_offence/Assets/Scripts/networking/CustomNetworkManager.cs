@@ -6,15 +6,14 @@ using Mirror;
 
 
 
-public class CustomNetworkManager : NetworkManager
-{
+public class CustomNetworkManager : NetworkManager {
 
 
     public ServerManager sm;
-    public static  Dictionary<string, NetworkPlayer> players;
+    public static Dictionary<string, NetworkPlayer> players;
 
 
-   
+
 
 
 
@@ -30,7 +29,7 @@ public class CustomNetworkManager : NetworkManager
             : Instantiate(playerPrefab);
 
         NetworkServer.AddPlayerForConnection(conn, player);
-        players.Add(conn.identity.netId.ToString(),player.GetComponent<NetworkPlayer>());
+        players.Add(conn.identity.netId.ToString(), player.GetComponent<NetworkPlayer>());
         Debug.Log("Added player " + conn.identity.netId.ToString());
         //Debug.Log(players[conn.identity.netId.ToString()].playerName);
         //Debug.Log(getPlayer(conn.identity.netId.ToString()));
@@ -39,27 +38,28 @@ public class CustomNetworkManager : NetworkManager
 
     }
 
-    
+
 
     public override void OnStartServer() {
         base.OnStartServer();
-        if(sm != null) {
+        if (sm != null) {
             //sm.connectGameServerToMaster();
         }
-        
+
         players = new Dictionary<string, NetworkPlayer>();
-
-
-
-
-        //Connect to main server
-
     }
 
     public static NetworkPlayer getPlayer(string _id) {
         return players[_id];
+    }
 
-
+    public static void checkWin(){
+       
+        foreach(KeyValuePair<string,NetworkPlayer> kv in players) {
+            if(kv.Value.points >= 3) {
+                Debug.Log(kv.Value.playerName + " wins");
+            }
+        }
     }
 
    

@@ -748,7 +748,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   syncMode: 0
-  syncInterval: 0.1
+  syncInterval: 0
   clientAuthority: 1
   localPositionSensitivity: 0.01
   localRotationSensitivity: 0.01
@@ -814,6 +814,7 @@ MonoBehaviour:
   nailGun: {fileID: 1202453017093325285}
   rocketGun: {fileID: 642529398346119568}
   model: {fileID: 837686744347218456}
+  spawnPoint: {x: 0, y: 0, z: 0}
 --- !u!114 &2172681566166154197
 MonoBehaviour:
   m_ObjectHideFlags: 0
