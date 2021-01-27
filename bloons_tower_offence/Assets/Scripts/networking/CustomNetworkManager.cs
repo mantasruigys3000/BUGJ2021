@@ -11,6 +11,8 @@ public class CustomNetworkManager : NetworkManager {
 
     public ServerManager sm;
     public static Dictionary<string, NetworkPlayer> players;
+    public List<int> takenSides;
+    public List<Vector3> spawns;
 
 
 
@@ -23,14 +25,28 @@ public class CustomNetworkManager : NetworkManager {
 
     }
     public override void OnServerAddPlayer(NetworkConnection conn) {
+
+        int index = 0;
+        for (index = 0; index < 4; index++) {
+            if (!takenSides.Contains(index)) {
+                takenSides.Add(index);
+                Debug.Log("assigned index " + index.ToString());
+                break;
+            }
+        }
+
         Transform startPos = GetStartPosition();
-        GameObject player = startPos != null
-            ? Instantiate(playerPrefab, startPos.position, startPos.rotation)
-            : Instantiate(playerPrefab);
+    
+        GameObject player = Instantiate(playerPrefab, spawns[index], Quaternion.identity); ;
 
         NetworkServer.AddPlayerForConnection(conn, player);
         players.Add(conn.identity.netId.ToString(), player.GetComponent<NetworkPlayer>());
+        players[conn.identity.netId.ToString()].spawnPoint = spawns[index];
+
+
+
         Debug.Log("Added player " + conn.identity.netId.ToString());
+        Debug.Log("spawn is " + spawns[index]);
         //Debug.Log(players[conn.identity.netId.ToString()].playerName);
         //Debug.Log(getPlayer(conn.identity.netId.ToString()));
 
@@ -42,11 +58,17 @@ public class CustomNetworkManager : NetworkManager {
 
     public override void OnStartServer() {
         base.OnStartServer();
+        
         if (sm != null) {
             //sm.connectGameServerToMaster();
         }
 
         players = new Dictionary<string, NetworkPlayer>();
+    }
+
+    public override void OnServerSceneChanged(string sceneName) {
+        base.OnServerSceneChanged(sceneName);
+        spawns = GameObject.Find("Mapinfo").GetComponent<mapInfo>().spawns;
     }
 
     public static NetworkPlayer getPlayer(string _id) {
@@ -62,7 +84,12 @@ public class CustomNetworkManager : NetworkManager {
         }
     }
 
-   
+    public override void OnServerDisconnect(NetworkConnection conn) {
+        base.OnServerDisconnect(conn);
+        players.Remove(conn.identity.netId.ToString());
+    }
+
+
 
 
 

@@ -152,7 +152,7 @@ Transform:
   - {fileID: 4822593736581820931}
   - {fileID: 3836869662626588282}
   m_Father: {fileID: 6171019612520817238}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: -0.013, y: 0.145, z: -0.252}
 --- !u!33 &5336863694855751439
 MeshFilter:
@@ -633,12 +633,14 @@ MonoBehaviour:
   nailAmmo: 0
   rocketAmmo: 0
   chosenWpn: 0
+  isDead: 0
+  points: 0
+  playerName: 
   rayGun: {fileID: 6171019612224417900}
   nailGun: {fileID: 1202453017093325285}
   rocketGun: {fileID: 642529398346119568}
   model: {fileID: 837686744347218456}
   spawnPoint: {x: 0, y: 0, z: 0}
-
 --- !u!114 &2172681566166154197
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -672,7 +674,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
-  shotgun: {fileID: 6171019612224417900}
 --- !u!136 &3991159457966456143
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -878,7 +879,7 @@ Transform:
   m_Children:
   - {fileID: 6171019612025219452}
   m_Father: {fileID: 6171019612520817238}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: -0.013, y: 0.145, z: -0.252}
 --- !u!33 &6171019612224417896
 MeshFilter:
@@ -1140,9 +1141,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6171019612457974248}
-  - {fileID: 6171019611221252590}
   - {fileID: 6171019612224417899}
   - {fileID: 7293248568995215238}
+  - {fileID: 805448918044927976}
   - {fileID: 7257515566161173712}
   m_Father: {fileID: 6171019611660958568}
   m_RootOrder: 2
@@ -1422,6 +1423,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 531818888968777545}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &837686744347218456 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: f6a72461d22f07c4e8e3e7b0309a61e4,
+    type: 3}
+  m_PrefabInstance: {fileID: 531818888968777545}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2623804248410108278
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1429,6 +1436,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6171019612520817238}
     m_Modifications:
+    - target: {fileID: 3405890691831649950, guid: bd86e0fc7b6e8aa4a828caed185f9734,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8199504248974272664, guid: bd86e0fc7b6e8aa4a828caed185f9734,
         type: 3}
       propertyPath: m_Pivot.x
@@ -1541,9 +1553,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bd86e0fc7b6e8aa4a828caed185f9734, type: 3}
---- !u!224 &6171019611221252590 stripped
+--- !u!224 &805448918044927976 stripped
 RectTransform:
-  m_CorrespondingSourceObject: {fileID: 8199504248974272664, guid: bd86e0fc7b6e8aa4a828caed185f9734,
+  m_CorrespondingSourceObject: {fileID: 3405890691831649950, guid: bd86e0fc7b6e8aa4a828caed185f9734,
     type: 3}
   m_PrefabInstance: {fileID: 2623804248410108278}
   m_PrefabAsset: {fileID: 0}

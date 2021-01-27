@@ -31,6 +31,7 @@ public class NetworkPlayer : NetworkBehaviour
     public GameObject nailGun;
     public GameObject rocketGun;
     public GameObject model;
+    [SyncVar]
     public Vector3 spawnPoint;
 
 
@@ -38,7 +39,7 @@ public class NetworkPlayer : NetworkBehaviour
 
     void Start()
     {
-        spawnPoint = new Vector3(-10.6700001f, 2.66000009f, -22.1499996f);
+        //spawnPoint = new Vector3(-10.6700001f, 2.66000009f, -22.1499996f);
         playerName = GetComponent<NetworkIdentity>().netId.ToString();
     }
 
