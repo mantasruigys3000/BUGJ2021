@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class mapInfo : MonoBehaviour
 {
-    public List<GameObject> spawnss;
-    public List<Vector3> spawns;
+    public List<Transform> spawns;
+    //public List<Vector3> spawns;
 
 }

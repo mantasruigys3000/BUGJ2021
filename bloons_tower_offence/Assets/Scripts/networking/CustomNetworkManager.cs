@@ -70,7 +70,10 @@ public class CustomNetworkManager : NetworkManager {
 
     public override void OnServerSceneChanged(string sceneName) {
         base.OnServerSceneChanged(sceneName);
-        spawns = GameObject.Find("Mapinfo").GetComponent<mapInfo>().spawns;
+        for(int s = 0; s < GameObject.Find("Mapinfo").GetComponent<mapInfo>().spawns.Count; s++) {
+            spawns.Add(GameObject.Find("Mapinfo").GetComponent<mapInfo>().spawns[s].position);
+        }
+        
     }
 
     public static NetworkPlayer getPlayer(string _id) {
