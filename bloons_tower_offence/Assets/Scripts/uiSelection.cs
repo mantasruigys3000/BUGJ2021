@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class uiSelection : MonoBehaviour
 {
-    public List<GameObject> uiElements;
+    public GameObject player;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,10 +17,11 @@ public class uiSelection : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.Alpha2) || Input.GetKeyDown(KeyCode.Alpha3))
         {
-            for(int i=0; i<uiElements.Count; i++)
+          /*  for(int i=0; i<uiElements.Count; i++)
             {
                 displayIcons(uiElements[i].gameObject);
             }
+          */
         }
     }
 
