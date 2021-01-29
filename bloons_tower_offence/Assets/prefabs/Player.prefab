@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4726365029923912179}
   m_Layer: 0
   m_Name: rocketGun
-  m_TagString: Untagged
+  m_TagString: playerRocketGun
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -277,7 +277,7 @@ GameObject:
   - component: {fileID: 957709198143011274}
   m_Layer: 0
   m_Name: gunEnd
-  m_TagString: Untagged
+  m_TagString: playerRocketGun
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -832,7 +832,7 @@ GameObject:
   - component: {fileID: 1869175604737313020}
   m_Layer: 0
   m_Name: re
-  m_TagString: Untagged
+  m_TagString: playerRocketGun
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1171,6 +1171,7 @@ MonoBehaviour:
   cheesePrefab: {fileID: 4374629319078696422, guid: 845eba5638187b54a8019e87f0d0a8ab,
     type: 3}
   playerCheese: {fileID: 4385573605476700688}
+  rocket: {fileID: 6227237361999947375, guid: 5e3271d548af55242a88fe1e7c3db3fb, type: 3}
   spawnPoint: {x: 0, y: 0, z: 0}
 --- !u!114 &2172681566166154197
 MonoBehaviour:

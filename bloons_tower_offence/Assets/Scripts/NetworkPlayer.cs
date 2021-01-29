@@ -39,6 +39,8 @@ public class NetworkPlayer : NetworkBehaviour
     public GameObject model;
     public GameObject cheesePrefab;
     public GameObject playerCheese;
+    public GameObject rocket;
+
 
     [SyncVar]
     public Vector3 spawnPoint;
@@ -93,6 +95,12 @@ public class NetworkPlayer : NetworkBehaviour
             if (Input.GetKeyDown(KeyCode.E)) {
                 CmdShootCheese();
             }
+            if (Input.GetMouseButtonDown(0)) {
+                if(chosenWpn == 3) {
+                    CmdShootRocket();
+                }
+            }
+
         }
             
 
@@ -115,8 +123,8 @@ public class NetworkPlayer : NetworkBehaviour
     }
     
     //MUST BE CALLED FROM A COMMAND
-    public void takeDamage(string _id = null) {
-        health -= 10;
+    public void takeDamage(string _id = null,int dmg = 10) {
+        health -= dmg;
         Debug.Log(gameObject.name + " " + health.ToString());
         if (health <= 0) {
             if (_id != null) {
@@ -217,6 +225,37 @@ public class NetworkPlayer : NetworkBehaviour
 
 
 
+    }
+
+    [Command]
+    public void CmdShootRocket() {
+        if(rocketAmmo > 0) {
+            GameObject _rocket = Instantiate(
+                rocket,
+                rocketGun.transform.Find("gunEnd").transform.position,
+                rocketGun.transform.Find("gunEnd").transform.rotation
+            );
+
+            _rocket.transform.Rotate(90f, 0, 0);
+            //_rocket.transform.Translate(0, 0, 2f);
+
+            _rocket.GetComponent<Rigidbody>().AddForce(_rocket.transform.up *  30f, ForceMode.Impulse);
+            
+            NetworkServer.Spawn(_rocket);
+
+
+
+        }
+    }
+    [ClientRpc]
+    public void Rpcexplode(Vector3 pos) {
+        gameObject.GetComponent<Rigidbody>().AddExplosionForce(
+                20f,
+                pos,
+                20f,
+                50f,
+                ForceMode.Impulse
+                );
     }
 
 
