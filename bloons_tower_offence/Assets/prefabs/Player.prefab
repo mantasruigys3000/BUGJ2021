@@ -433,7 +433,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -497,7 +497,7 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4225149058080262350}
   m_Enabled: 1
-  m_Alpha: 0
+  m_Alpha: 1
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
@@ -729,7 +729,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1164,6 +1164,10 @@ MonoBehaviour:
   playerName: 
   playerIndex: 0
   hasCheese: 0
+  icons:
+  - {fileID: 4134839917000031537}
+  - {fileID: 6940504064431218997}
+  - {fileID: 4949694259425044525}
   rayGun: {fileID: 6171019612224417900}
   nailGun: {fileID: 1202453017093325285}
   rocketGun: {fileID: 642529398346119568}
@@ -1295,6 +1299,10 @@ MonoBehaviour:
   gunPickup: 0
   gunsIcon: {fileID: 4225149058080262350}
   chosenWpn: 0
+  icons:
+  - {fileID: 6940504064431218997}
+  - {fileID: 4134839917000031537}
+  - {fileID: 4949694259425044525}
 --- !u!1 &6171019611677568808
 GameObject:
   m_ObjectHideFlags: 0
@@ -1743,7 +1751,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 60
+  field of view: 91.4
   orthographic: 0
   orthographic size: 5
   m_Depth: 0
@@ -1799,9 +1807,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   settings:
     threshold: 1.06
-    softKnee: 0.272
+    softKnee: 0.028
     radius: 1
-    intensity: 0.7
+    intensity: 0.31
     highQuality: 1
     antiFlicker: 0
     dirtTexture: {fileID: 0}
@@ -1888,7 +1896,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

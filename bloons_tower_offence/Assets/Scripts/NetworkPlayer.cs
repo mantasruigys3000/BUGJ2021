@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using Mirror;
 
 
@@ -28,9 +29,9 @@ public class NetworkPlayer : NetworkBehaviour
     public bool hasCheese;
 
 
+    public List<GameObject> icons;
 
 
-   
 
 
     public GameObject rayGun;
@@ -56,6 +57,34 @@ public class NetworkPlayer : NetworkBehaviour
     void Update()
     {
         if (!isDead) {
+
+            if(rayAmmo>0)
+            {
+                icons[0].GetComponent<Image>().color= new Vector4(icons[0].GetComponent<Image>().color.r, icons[0].GetComponent<Image>().color.g, icons[0].GetComponent<Image>().color.b, 100);
+            }
+            else
+            {
+                icons[0].GetComponent<Image>().color = new Vector4(icons[0].GetComponent<Image>().color.r, icons[0].GetComponent<Image>().color.g, icons[0].GetComponent<Image>().color.b, 0);
+            }
+
+            if (nailAmmo > 0)
+            {
+                icons[1].GetComponent<Image>().color = new Vector4(icons[1].GetComponent<Image>().color.r, icons[1].GetComponent<Image>().color.g, icons[1].GetComponent<Image>().color.b, 100);
+            }
+            else
+            {
+                icons[1].GetComponent<Image>().color = new Vector4(icons[1].GetComponent<Image>().color.r, icons[1].GetComponent<Image>().color.g, icons[1].GetComponent<Image>().color.b, 0);
+            }
+
+            if (rocketAmmo > 0)
+            {
+                icons[2].GetComponent<Image>().color = new Vector4(icons[2].GetComponent<Image>().color.r, icons[2].GetComponent<Image>().color.g, icons[2].GetComponent<Image>().color.b, 100);
+            }
+            else
+            {
+                icons[2].GetComponent<Image>().color = new Vector4(icons[2].GetComponent<Image>().color.r, icons[2].GetComponent<Image>().color.g, icons[2].GetComponent<Image>().color.b, 0);
+            }
+
             if (Input.GetKeyDown(KeyCode.Alpha1)) {
                 CmdchangeWeapon(1);
             }

@@ -12,6 +12,8 @@ public class uiSync : NetworkBehaviour
     public bool gunPickup= false;
     public GameObject gunsIcon;
     public int chosenWpn;
+
+    public List<GameObject> icons;
     // Start is called before the first frame update
     void Start()
     {
@@ -38,10 +40,5 @@ public class uiSync : NetworkBehaviour
             ammo.GetComponent<Text>().text = gameObject.GetComponent<NetworkPlayer>().rocketAmmo.ToString();
         }
 
-        if(gunPickup)
-        {
-            gunsIcon.GetComponent<CanvasGroup>().alpha = Mathf.Lerp(0, 1, 2f * Time.deltaTime);
-
-        }
     }
 }
