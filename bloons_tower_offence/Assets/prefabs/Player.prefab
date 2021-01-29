@@ -1299,9 +1299,10 @@ MonoBehaviour:
   gunPickup: 0
   gunsIcon: {fileID: 4225149058080262350}
   chosenWpn: 0
+  can: {fileID: 8958803344661973454}
   icons:
-  - {fileID: 6940504064431218997}
   - {fileID: 4134839917000031537}
+  - {fileID: 6940504064431218997}
   - {fileID: 4949694259425044525}
 --- !u!1 &6171019611677568808
 GameObject:

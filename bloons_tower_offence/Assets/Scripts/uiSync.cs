@@ -13,16 +13,56 @@ public class uiSync : NetworkBehaviour
     public GameObject gunsIcon;
     public int chosenWpn;
 
+    public Canvas can;
+    int rayAmmo;
+    int nailAmmo;
+    int rocketAmmo;
     public List<GameObject> icons;
+
     // Start is called before the first frame update
     void Start()
     {
         
+        if(!isLocalPlayer)
+        {
+            can.enabled = false;
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
+        rayAmmo = gameObject.GetComponent<NetworkPlayer>().rayAmmo;
+        nailAmmo = gameObject.GetComponent<NetworkPlayer>().nailAmmo;
+        rocketAmmo = gameObject.GetComponent<NetworkPlayer>().rocketAmmo;
+        if (rayAmmo > 0)
+        {
+            icons[0].GetComponent<Image>().color = new Vector4(icons[0].GetComponent<Image>().color.r, icons[0].GetComponent<Image>().color.g, icons[0].GetComponent<Image>().color.b, 100);
+        }
+        else
+        {
+            icons[0].GetComponent<Image>().color = new Vector4(icons[0].GetComponent<Image>().color.r, icons[0].GetComponent<Image>().color.g, icons[0].GetComponent<Image>().color.b, 0);
+        }
+
+        if (nailAmmo > 0)
+        {
+            icons[1].GetComponent<Image>().color = new Vector4(icons[1].GetComponent<Image>().color.r, icons[1].GetComponent<Image>().color.g, icons[1].GetComponent<Image>().color.b, 100);
+        }
+        else
+        {
+            icons[1].GetComponent<Image>().color = new Vector4(icons[1].GetComponent<Image>().color.r, icons[1].GetComponent<Image>().color.g, icons[1].GetComponent<Image>().color.b, 0);
+        }
+
+        if (rocketAmmo > 0)
+        {
+            icons[2].GetComponent<Image>().color = new Vector4(icons[2].GetComponent<Image>().color.r, icons[2].GetComponent<Image>().color.g, icons[2].GetComponent<Image>().color.b, 100);
+        }
+        else
+        {
+            icons[2].GetComponent<Image>().color = new Vector4(icons[2].GetComponent<Image>().color.r, icons[2].GetComponent<Image>().color.g, icons[2].GetComponent<Image>().color.b, 0);
+        }
+
+
         health.GetComponent<Text>().text = gameObject.GetComponent<NetworkPlayer>().health.ToString();
         
         chosenWpn = gameObject.GetComponent<NetworkPlayer>().chosenWpn;
