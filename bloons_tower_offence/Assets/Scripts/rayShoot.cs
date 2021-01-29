@@ -26,7 +26,7 @@ public class rayShoot : NetworkBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            CmdShoot();
+            //CmdShoot();
         }
     }
 

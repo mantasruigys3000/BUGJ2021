@@ -13,6 +13,11 @@ public class CustomNetworkManager : NetworkManager {
     public static Dictionary<string, NetworkPlayer> players;
     public List<int> takenSides;
     public List<Vector3> spawns;
+    public static Vector3 cheeseSpawn;
+    public GameObject _cheesePrefab;
+    public static GameObject cheesePrefab;
+
+
     
 
 
@@ -23,6 +28,8 @@ public class CustomNetworkManager : NetworkManager {
     public override void Awake() {
         base.Awake();
         sm = GetComponent<ServerManager>();
+        cheesePrefab = _cheesePrefab;
+
 
     }
     public override void OnServerAddPlayer(NetworkConnection conn) {
@@ -73,7 +80,9 @@ public class CustomNetworkManager : NetworkManager {
         for(int s = 0; s < GameObject.Find("Mapinfo").GetComponent<mapInfo>().spawns.Count; s++) {
             spawns.Add(GameObject.Find("Mapinfo").GetComponent<mapInfo>().spawns[s].position);
         }
-        
+        cheeseSpawn = GameObject.Find("Mapinfo").GetComponent<mapInfo>().cheeseSpawn.position;
+
+
     }
 
     public static NetworkPlayer getPlayer(string _id) {
@@ -92,6 +101,14 @@ public class CustomNetworkManager : NetworkManager {
     public override void OnServerDisconnect(NetworkConnection conn) {
         base.OnServerDisconnect(conn);
         players.Remove(conn.identity.netId.ToString());
+    }
+
+    
+    public static void SpawnCheese() {
+        GameObject cheese = Instantiate(cheesePrefab,cheeseSpawn,Quaternion.identity);
+        NetworkServer.Spawn(cheese);
+
+
     }
 
 
