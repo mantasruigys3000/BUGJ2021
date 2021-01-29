@@ -262,13 +262,15 @@ public class NetworkPlayer : NetworkBehaviour
             GameObject _rocket = Instantiate(
                 rocket,
                 rocketGun.transform.Find("gunEnd").transform.position,
-                rocketGun.transform.Find("gunEnd").transform.rotation
+                gameObject.transform.Find("Camera").transform.rotation
             );
 
             _rocket.transform.Rotate(90f, 0, 0);
             //_rocket.transform.Translate(0, 0, 2f);
 
             _rocket.GetComponent<Rigidbody>().AddForce(_rocket.transform.up *  30f, ForceMode.Impulse);
+            _rocket.GetComponent<rocketScript>().shotFrom = gameObject.GetComponent<NetworkIdentity>().netId.ToString();
+
             
             NetworkServer.Spawn(_rocket);
 

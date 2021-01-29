@@ -231,7 +231,7 @@ PrefabInstance:
     - target: {fileID: 8913386531832521922, guid: 1d63cd9bfc63e8d4ea06b784a77e93e0,
         type: 3}
       propertyPath: onlineScene
-      value: Assets/Scenes/menus/TeoScene 1.unity
+      value: Assets/Scenes/menus/TeoScene 2.unity
       objectReference: {fileID: 0}
     - target: {fileID: 8913386531832521922, guid: 1d63cd9bfc63e8d4ea06b784a77e93e0,
         type: 3}
@@ -388,52 +388,16 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1184015002 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8913386531832521932, guid: 1d63cd9bfc63e8d4ea06b784a77e93e0,
-    type: 3}
-  m_PrefabInstance: {fileID: 352443315}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1184015003 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1184015008, guid: 1d63cd9bfc63e8d4ea06b784a77e93e0,
     type: 3}
   m_PrefabInstance: {fileID: 352443315}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1184015002}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 703f29f63705bdb46a5671f71b7066ba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1184015004
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1184015002}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c021dd8520c8f0742bb4f12c0e0b712c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ip: localhost
-  port: 7755
-  manager: {fileID: 1184015005}
-  transport: {fileID: 0}
-  currentGames: []
-  connectToPort: 8000
---- !u!114 &1184015005 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8913386531832521922, guid: 1d63cd9bfc63e8d4ea06b784a77e93e0,
-    type: 3}
-  m_PrefabInstance: {fileID: 352443315}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1184015002}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 98cf229819db035429f213079157f4ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1463072513

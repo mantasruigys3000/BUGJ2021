@@ -9,8 +9,13 @@ public class rocketScript : NetworkBehaviour
     [SyncVar]
     public string shotFrom;
 
+    List<string> shot;
+
+
 
     private void OnTriggerEnter(Collider other) {
+        shot = new List<string>();
+
         if (isServer && other.gameObject.tag != "playerRocketGun") {
 
             
@@ -20,9 +25,11 @@ public class rocketScript : NetworkBehaviour
             foreach(var c in hits) {
                 
 
-                if(c.gameObject.tag == "Player") {
-                    
-                    
+                if(c.gameObject.tag == "Player" && c.gameObject.GetComponent<NetworkIdentity>().netId.ToString() != shotFrom){
+
+                    if(!shot.Contains(c.gameObject.GetComponent<NetworkIdentity>().netId.ToString())) {
+                    shot.Add(c.gameObject.GetComponent<NetworkIdentity>().netId.ToString());
+
                     int damage = 80;
                      damage -= (int) Mathf.Floor(Vector3.Distance(transform.position,c.gameObject.transform.position)) * 10;
                     
@@ -31,6 +38,8 @@ public class rocketScript : NetworkBehaviour
 
                     CustomNetworkManager.players[hitId].takeDamage(shotFrom, damage);
 
+                    }
+                    
 
 
 
