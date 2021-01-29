@@ -13,7 +13,8 @@ public class gunPickUp : NetworkBehaviour
         {
             if (other.gameObject.tag == "rayGun")
             {
-                gameObject.GetComponent<NetworkPlayer>().rayAmmo += 10;
+                gameObject.GetComponent<uiSync>().gunPickup = true;
+                gameObject.GetComponent<NetworkPlayer>().rayAmmo += 5;
                 other.gameObject.GetComponent<CapsuleCollider>().enabled = false;
                 other.gameObject.transform.GetChild(0).gameObject.SetActive(false);
                 other.gameObject.GetComponent<disableScript>().RpcDie();
@@ -21,7 +22,8 @@ public class gunPickUp : NetworkBehaviour
             }
             if (other.gameObject.tag == "nailGun")
             {
-                gameObject.GetComponent<NetworkPlayer>().nailAmmo += 10;
+                gameObject.GetComponent<uiSync>().gunPickup = true;
+                gameObject.GetComponent<NetworkPlayer>().nailAmmo += 50;
                 other.gameObject.GetComponent<CapsuleCollider>().enabled = false;
                 other.gameObject.transform.GetChild(0).gameObject.SetActive(false);
                 other.gameObject.GetComponent<disableScript>().RpcDie();
@@ -29,7 +31,8 @@ public class gunPickUp : NetworkBehaviour
             }
             if (other.gameObject.tag == "rocketGun")
             {
-                gameObject.GetComponent<NetworkPlayer>().rocketAmmo += 10;
+                gameObject.GetComponent<uiSync>().gunPickup = true;
+                gameObject.GetComponent<NetworkPlayer>().rocketAmmo += 15;
                 other.gameObject.GetComponent<CapsuleCollider>().enabled = false;
                 other.gameObject.transform.GetChild(0).gameObject.SetActive(false);
                 other.gameObject.GetComponent<disableScript>().RpcDie();

@@ -7,7 +7,7 @@ using Mirror;
 public class NetworkPlayer : NetworkBehaviour
 {
     [SyncVar]
-    float health = 100f;
+    public int health = 100;
     [SyncVar]
     public int rayAmmo = 0;
     [SyncVar]
