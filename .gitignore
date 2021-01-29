@@ -9,6 +9,7 @@ bloons_tower_offence/[Bb]uild/
 bloons_tower_offence/[Bb]uilds/
 bloons_tower_offence/[Ll]ogs/
 bloons_tower_offence/[Mm]emoryCaptures/
+bloons_tower_offence/[Us]erSettings/
 
 # Asset meta data should only be ignored when the corresponding asset is also ignored
 !bloons_tower_offence/[Aa]ssets/**/*.meta
