@@ -227,7 +227,7 @@ PrefabInstance:
         type: 3}
       propertyPath: transport
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1184015003}
     - target: {fileID: 8913386531832521922, guid: 1d63cd9bfc63e8d4ea06b784a77e93e0,
         type: 3}
       propertyPath: onlineScene
@@ -257,13 +257,19 @@ PrefabInstance:
     - target: {fileID: 8913386531832521922, guid: 1d63cd9bfc63e8d4ea06b784a77e93e0,
         type: 3}
       propertyPath: spawnPrefabs.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8913386531832521922, guid: 1d63cd9bfc63e8d4ea06b784a77e93e0,
         type: 3}
       propertyPath: spawnPrefabs.Array.data[0]
       value: 
       objectReference: {fileID: 7967485787756778002, guid: 3dd1c6ab9f3f54c4ea2cf50794adfcd4,
+        type: 3}
+    - target: {fileID: 8913386531832521922, guid: 1d63cd9bfc63e8d4ea06b784a77e93e0,
+        type: 3}
+      propertyPath: spawnPrefabs.Array.data[1]
+      value: 
+      objectReference: {fileID: 4374629319078696422, guid: 845eba5638187b54a8019e87f0d0a8ab,
         type: 3}
     - target: {fileID: 8913386531832521923, guid: 1d63cd9bfc63e8d4ea06b784a77e93e0,
         type: 3}
@@ -376,6 +382,18 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 352443315}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1184015003 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1184015008, guid: 1d63cd9bfc63e8d4ea06b784a77e93e0,
+    type: 3}
+  m_PrefabInstance: {fileID: 352443315}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1184015002}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 703f29f63705bdb46a5671f71b7066ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1184015004
 MonoBehaviour:
   m_ObjectHideFlags: 0

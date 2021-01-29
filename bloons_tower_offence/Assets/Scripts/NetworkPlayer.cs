@@ -22,6 +22,12 @@ public class NetworkPlayer : NetworkBehaviour
     public int points;
     [SyncVar]
     public string playerName;
+    [SyncVar]
+    public int playerIndex;
+    [SyncVar]
+    public bool hasCheese;
+
+
 
 
    
@@ -31,6 +37,9 @@ public class NetworkPlayer : NetworkBehaviour
     public GameObject nailGun;
     public GameObject rocketGun;
     public GameObject model;
+    public GameObject cheesePrefab;
+    public GameObject playerCheese;
+
     [SyncVar]
     public Vector3 spawnPoint;
 
@@ -73,6 +82,16 @@ public class NetworkPlayer : NetworkBehaviour
                 rayGun.SetActive(false);
                 nailGun.SetActive(false);
                 rocketGun.SetActive(true);
+            }
+
+            if (hasCheese) {
+                playerCheese.SetActive(true);
+            } else {
+                playerCheese.SetActive(false);
+            }
+
+            if (Input.GetKeyDown(KeyCode.E)) {
+                CmdShootCheese();
             }
         }
             
@@ -178,6 +197,25 @@ public class NetworkPlayer : NetworkBehaviour
     public void addPoint() {
         points += 1;
         CustomNetworkManager.checkWin();
+
+    }
+
+    [Command]
+    public void CmdShootCheese() {
+        if (hasCheese) {
+            hasCheese = false;
+            playerCheese.SetActive(false);
+            GameObject cheese = Instantiate(cheesePrefab,transform.position + new Vector3(0f,2f,0f) + (gameObject.transform.forward),Quaternion.identity);
+            
+
+            cheese.GetComponent<Rigidbody>().AddForce(gameObject.transform.Find("Camera").transform.forward * 10f, ForceMode.Impulse);
+            NetworkServer.Spawn(cheese);
+
+        }
+        
+
+
+
 
     }
 

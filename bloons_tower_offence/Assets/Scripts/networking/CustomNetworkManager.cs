@@ -13,6 +13,7 @@ public class CustomNetworkManager : NetworkManager {
     public static Dictionary<string, NetworkPlayer> players;
     public List<int> takenSides;
     public List<Vector3> spawns;
+    
 
 
 
@@ -42,6 +43,7 @@ public class CustomNetworkManager : NetworkManager {
         NetworkServer.AddPlayerForConnection(conn, player);
         players.Add(conn.identity.netId.ToString(), player.GetComponent<NetworkPlayer>());
         players[conn.identity.netId.ToString()].spawnPoint = spawns[index];
+        players[conn.identity.netId.ToString()].playerIndex = index;
 
 
 
