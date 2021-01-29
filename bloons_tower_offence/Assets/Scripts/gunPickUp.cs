@@ -1,19 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using Mirror;
 
 public class gunPickUp : NetworkBehaviour
 {
-
-
     private void OnTriggerEnter(Collider other)
     {
         if (isServer)
         {
             if (other.gameObject.tag == "rayGun")
             {
-                gameObject.GetComponent<uiSync>().gunPickup = true;
                 gameObject.GetComponent<NetworkPlayer>().rayAmmo += 5;
                 other.gameObject.GetComponent<CapsuleCollider>().enabled = false;
                 other.gameObject.transform.GetChild(0).gameObject.SetActive(false);
