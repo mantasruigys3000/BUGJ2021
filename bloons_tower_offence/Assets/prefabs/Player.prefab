@@ -3150,6 +3150,7 @@ MonoBehaviour:
   nail: {fileID: 5503751876191927195, guid: 5bf1acb2d079d454b8301a852fd99ee6, type: 3}
   railPrefab: {fileID: 5950258191377846427, guid: 608053da4f7d6794e895f394d734c2c1,
     type: 3}
+  trail: {fileID: 2143302380884249928, guid: fc02e545be38d8b43bd5667194ee88fe, type: 3}
   death: {fileID: 3679004039156998472, guid: 3ed7608ac3bdf714b9346a3adea77921, type: 3}
   spawnPoint: {x: 0, y: 0, z: 0}
 --- !u!114 &2172681566166154197

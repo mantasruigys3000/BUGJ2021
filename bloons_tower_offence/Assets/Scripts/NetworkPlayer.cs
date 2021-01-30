@@ -49,6 +49,8 @@ public class NetworkPlayer : NetworkBehaviour
     public GameObject rocket;
     public GameObject nail;
     public GameObject railPrefab;
+    public ParticleSystem trail;
+
 
     public GameObject death;
 
@@ -416,9 +418,13 @@ public class NetworkPlayer : NetworkBehaviour
             //GameObject r = Instantiate(railPrefab,
             //    rayGun.transform.Find("gunEnd").transform.position,
             //    gameObject.transform.Find("Camera").transform.rotation
-            //    );
-            //r.GetComponent<Rigidbody>().AddForce(r.transform.forward *  5f, ForceMode.Impulse);
+            ///    );
+            //r.GetComponent<Rigidbody>().AddForce(r.transform.forward *  50f, ForceMode.Impulse);
             //NetworkServer.Spawn(r);
+
+            
+
+
 
 
 
@@ -440,10 +446,17 @@ public class NetworkPlayer : NetworkBehaviour
         
     }
 
+    
+
     [ClientRpc]
     public void RpcShootRay()
     {
         audioSync.playSound(4);
+        ParticleSystem ps = Instantiate(trail, rayGun.transform.Find("gunEnd").transform.position,
+               gameObject.transform.Find("Camera").transform.rotation);
+        ps.GetComponent<Rigidbody>().AddForce(ps.transform.forward * 100f, ForceMode.Impulse);
+
+
     }
 
     [ClientRpc]
