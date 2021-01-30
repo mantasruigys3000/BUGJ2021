@@ -36,6 +36,8 @@ public class NetworkPlayer : NetworkBehaviour
     public Text winsText;
     public bool canShootNail = true;
     public bool canShootRay = true;
+    public bool canShootRocket = true;
+
 
 
     public GameObject rayGun;
@@ -301,9 +303,19 @@ public class NetworkPlayer : NetworkBehaviour
         }
     }
 
+    public IEnumerator reloadRocket() {
+        yield return new WaitForSeconds(1);
+        canShootRocket = true;
+
+    }
+
     [Command]
     public void CmdShootRocket() {
-        if(rocketAmmo > 0) {
+        if(rocketAmmo > 0 && canShootRocket) {
+            canShootRocket = false;
+            StartCoroutine(nameof(reloadRocket));
+
+
             rocketAmmo -= 1;
 
             RpcShootRocket(); 
