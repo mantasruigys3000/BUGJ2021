@@ -30,6 +30,8 @@ public class NetworkPlayer : NetworkBehaviour
 
 
     public List<GameObject> icons;
+    public bool canShootNail = true;
+
 
 
 
@@ -41,6 +43,8 @@ public class NetworkPlayer : NetworkBehaviour
     public GameObject cheesePrefab;
     public GameObject playerCheese;
     public GameObject rocket;
+    public GameObject nail;
+
 
 
     [SyncVar]
@@ -128,7 +132,12 @@ public class NetworkPlayer : NetworkBehaviour
                 if(chosenWpn == 3) {
                     CmdShootRocket();
                 }
-            }
+            }  
+            if (Input.GetMouseButton(0)) {
+                if (chosenWpn == 2) {
+                    CmdShootNail();
+                }
+            }  
 
         }
             
@@ -259,6 +268,8 @@ public class NetworkPlayer : NetworkBehaviour
     [Command]
     public void CmdShootRocket() {
         if(rocketAmmo > 0) {
+            rocketAmmo -= 1;
+            
             GameObject _rocket = Instantiate(
                 rocket,
                 rocketGun.transform.Find("gunEnd").transform.position,
@@ -278,6 +289,30 @@ public class NetworkPlayer : NetworkBehaviour
 
         }
     }
+
+    public IEnumerator reloadNail() {
+        yield return new WaitForSeconds(0.1f);
+        canShootNail = true;
+    }
+
+    [Command]
+    public void CmdShootNail() {
+        if(nailAmmo > 0 && canShootNail) {
+            StartCoroutine(nameof(reloadNail));
+            nailAmmo -= 1;
+            canShootNail = false;
+            GameObject _nail = Instantiate(nail, nailGun.transform.Find("gunEnd").transform.position,
+                gameObject.transform.Find("Camera").transform.rotation);
+            _nail.transform.Rotate(90, 0, 0);
+
+
+            _nail.GetComponent<Rigidbody>().AddForce(_nail.transform.up * 60f, ForceMode.Impulse);
+            
+
+            NetworkServer.Spawn(_nail); 
+        }
+    }
+
     [ClientRpc]
     public void Rpcexplode(Vector3 pos) {
         gameObject.GetComponent<Rigidbody>().AddExplosionForce(
