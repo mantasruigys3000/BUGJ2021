@@ -365,7 +365,14 @@ public class NetworkPlayer : NetworkBehaviour
     [Command]
 
     public void CmdSetName(string _name) {
-        playerName = _name;
+        if( _name != null) {
+            playerName = _name;
+        } else {
+            playerName = playerIndex.ToString();
+
+        }
+
+        
 
     }
 
@@ -375,6 +382,13 @@ public class NetworkPlayer : NetworkBehaviour
     {
         audioSync.playSound(0);
         audioSync.playSound(1);
+    }
+
+    [ClientRpc]
+
+    public void RpcDisableMove() {
+        gameObject.GetComponent<movementScript>().enabled = false;
+        gameObject.GetComponent<CharacterController>().enabled = false;
     }
 
 

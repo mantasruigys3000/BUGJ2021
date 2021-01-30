@@ -11,6 +11,13 @@ public class GameManager : NetworkBehaviour
     public void restartGame() {
         if (isServer) {
             Debug.Log("RESTARTING GAME");
+            foreach (KeyValuePair<string, NetworkPlayer> kv in CustomNetworkManager.players) {
+                if (kv.Value.isServer) {
+                    kv.Value.RpcDisableMove();
+
+
+                }
+            }
             StartCoroutine(nameof(restart));
             
         }
@@ -25,8 +32,21 @@ public class GameManager : NetworkBehaviour
             NetworkServer.Destroy(monke);
         }
         CustomNetworkManager.SpawnCheese();
+        NetworkPlayer nw;
 
         foreach (KeyValuePair<string, NetworkPlayer> kv in CustomNetworkManager.players) {
+            if (kv.Value.isServer) {
+                kv.Value.RpcDisableMove();
+                
+                
+            }
+        }
+
+
+
+
+        foreach (KeyValuePair<string, NetworkPlayer> kv in CustomNetworkManager.players) {
+            nw = kv.Value;
 
 
             kv.Value.gameObject.GetComponent<movementScript>().enabled = false;
@@ -51,7 +71,12 @@ public class GameManager : NetworkBehaviour
             Debug.Log("RESTART RPC CALLING");
             kv.Value.RpcRespawn();
 
+
+
         }
+       
+        
+
 
     }
 
