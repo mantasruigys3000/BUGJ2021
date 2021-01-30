@@ -57,15 +57,14 @@ public class movementScript : NetworkBehaviour
         //put here if you want to make it only on ground
         if (isGrounded && velocity.y< 0)
         {
-            z = Input.GetAxis("Vertical");
-            x = Input.GetAxis("Horizontal");
+           
             
-
-
+            
             velocity.y = -2f;
         }
+        z = Input.GetAxis("Vertical");
+        x = Input.GetAxis("Horizontal");
         move = transform.right * x + transform.forward * z;
-
         controller.Move(move* speed* Time.deltaTime);
 
         if(Input.GetKey("space") && isGrounded)
