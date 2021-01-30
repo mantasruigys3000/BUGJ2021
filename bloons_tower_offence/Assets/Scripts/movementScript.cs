@@ -8,12 +8,14 @@ public class movementScript : NetworkBehaviour
 {
     public CharacterController controller;
     public float speed = 12f;
+
     public float gravity = -5f;
     public float jumpStrength = 3f;
 
     public Transform groundCheck;
     public float groundDistance = 0.4f;
     public LayerMask groundMask;
+
 
     public float x;
     public float z;
