@@ -146,7 +146,7 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0
   shotFrom: 
-  particles: {fileID: 3302442364004722509, guid: 10434d6bf3af98b46a88ab696f543ee3,
+  particles: {fileID: 5149668159078303440, guid: 951dcfd0f4f852445907cc98ab398851,
     type: 3}
 --- !u!114 &-7695718061189293460
 MonoBehaviour:

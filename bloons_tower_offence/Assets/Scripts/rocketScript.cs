@@ -12,7 +12,7 @@ public class rocketScript : NetworkBehaviour
     List<string> shot;
     private audioSync audioSync;
 
-    public ParticleSystem particles;
+    public GameObject particles;
 
     private void Start()
     {
@@ -25,7 +25,13 @@ public class rocketScript : NetworkBehaviour
         if (isServer && other.gameObject.tag != "playerRocketGun") {
             Debug.Log("sTEP2");
             RpcPlaySound();
-            Instantiate(particles, other.transform);
+            RaycastHit hit;
+            if (Physics.Raycast(transform.position, transform.forward, out hit)) {
+                GameObject p = Instantiate(particles, hit.point, Quaternion.identity);
+                NetworkServer.Spawn(p);
+            }
+            
+
             Collider[] hits = Physics.OverlapSphere(transform.position, 7f);
             foreach(var c in hits) {
                 //&& c.gameObject.GetComponent<NetworkIdentity>().netId.ToString() != shotFrom

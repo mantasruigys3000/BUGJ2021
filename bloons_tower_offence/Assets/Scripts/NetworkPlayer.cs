@@ -50,7 +50,7 @@ public class NetworkPlayer : NetworkBehaviour
     public GameObject nail;
     public GameObject railPrefab;
 
-    public ParticleSystem death;
+    public GameObject death;
 
     [SyncVar]
     public Vector3 spawnPoint;
