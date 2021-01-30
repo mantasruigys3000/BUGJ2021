@@ -428,7 +428,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1374675617}
   m_Direction: 0
   m_Value: 0
-  m_Size: 1
+  m_Size: 0.99999994
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -809,7 +809,7 @@ PrefabInstance:
     - target: {fileID: 8913386531832521922, guid: 1d63cd9bfc63e8d4ea06b784a77e93e0,
         type: 3}
       propertyPath: onlineScene
-      value: Assets/Scenes/menus/TeoScene 1.unity
+      value: Assets/Scenes/menus/TeoScene 2.unity
       objectReference: {fileID: 0}
     - target: {fileID: 8913386531832521922, guid: 1d63cd9bfc63e8d4ea06b784a77e93e0,
         type: 3}
