@@ -8,6 +8,8 @@ public class uiSync : NetworkBehaviour
 {
     public GameObject health;
     public GameObject ammo;
+    public GameObject score;
+    public GameObject deaths;
 
     public bool gunPickup= false;
     public GameObject gunsIcon;
@@ -22,7 +24,6 @@ public class uiSync : NetworkBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
         if(!isLocalPlayer)
         {
             can.enabled = false;
@@ -64,6 +65,8 @@ public class uiSync : NetworkBehaviour
 
 
         health.GetComponent<Text>().text = gameObject.GetComponent<NetworkPlayer>().health.ToString();
+        score.GetComponent<Text>().text = gameObject.GetComponent<NetworkPlayer>().points.ToString();
+        deaths.GetComponent<Text>().text = gameObject.GetComponent<NetworkPlayer>().deaths.ToString();
         
         chosenWpn = gameObject.GetComponent<NetworkPlayer>().chosenWpn;
 
