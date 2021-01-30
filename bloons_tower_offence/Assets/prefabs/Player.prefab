@@ -3148,9 +3148,9 @@ MonoBehaviour:
   playerCheese: {fileID: 4385573605476700688}
   rocket: {fileID: 6227237361999947375, guid: 5e3271d548af55242a88fe1e7c3db3fb, type: 3}
   nail: {fileID: 5503751876191927195, guid: 5bf1acb2d079d454b8301a852fd99ee6, type: 3}
-  death: {fileID: 6237553109302029179, guid: 028315ff90f3b77478f6282592e23c74, type: 3}
   railPrefab: {fileID: 5950258191377846427, guid: 608053da4f7d6794e895f394d734c2c1,
     type: 3}
+  death: {fileID: 3679004039156998472, guid: 3ed7608ac3bdf714b9346a3adea77921, type: 3}
   spawnPoint: {x: 0, y: 0, z: 0}
 --- !u!114 &2172681566166154197
 MonoBehaviour:

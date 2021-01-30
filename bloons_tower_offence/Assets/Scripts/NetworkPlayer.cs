@@ -193,31 +193,40 @@ public class NetworkPlayer : NetworkBehaviour
 
     [Command]
     public void CmdDie() {
-        isDead = true;
+        if(isDead == false) {
+            isDead = true;
 
 
-        if (hasCheese) {
-            hasCheese = false;
-            playerCheese.SetActive(false);
-            GameObject cheese = Instantiate(cheesePrefab, transform.position + new Vector3(0f, 2f, 0f) + (gameObject.transform.forward), Quaternion.identity);
+
+            if (hasCheese) {
+                hasCheese = false;
+                playerCheese.SetActive(false);
+                GameObject cheese = Instantiate(cheesePrefab, transform.position + new Vector3(0f, 2f, 0f) + (gameObject.transform.forward), Quaternion.identity);
 
 
-            cheese.GetComponent<Rigidbody>().AddForce(gameObject.transform.Find("Camera").transform.forward * 2f, ForceMode.Impulse);
-            NetworkServer.Spawn(cheese);
+                cheese.GetComponent<Rigidbody>().AddForce(gameObject.transform.Find("Camera").transform.forward * 2f, ForceMode.Impulse);
+                NetworkServer.Spawn(cheese);
 
+            }
+
+
+
+            gameObject.GetComponent<CharacterController>().enabled = false;
+            gameObject.GetComponent<CapsuleCollider>().enabled = false;
+            gameObject.GetComponent<movementScript>().enabled = false;
+            rayGun.SetActive(false);
+            nailGun.SetActive(false);
+            rocketGun.SetActive(false);
+            model.SetActive(false);
+            StartCoroutine(nameof(repsawnTimer));
+
+            GameObject d = Instantiate(death, transform.position, Quaternion.identity);
+            NetworkServer.Spawn(d);
+
+
+            RpcDie();
         }
-
-
-
-        gameObject.GetComponent<CharacterController>().enabled = false;
-        gameObject.GetComponent<CapsuleCollider>().enabled = false;
-        gameObject.GetComponent<movementScript>().enabled = false;
-        rayGun.SetActive(false);
-        nailGun.SetActive(false);
-        rocketGun.SetActive(false);
-        model.SetActive(false);
-        StartCoroutine(nameof(repsawnTimer));
-        RpcDie();
+        
     }
 
     [ClientRpc]
