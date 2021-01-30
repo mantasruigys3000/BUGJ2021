@@ -25,8 +25,6 @@ public class movementScript : NetworkBehaviour
 
     // To disable
     public Camera cam;
-    
-
 
     private void Start()
     {
@@ -59,9 +57,6 @@ public class movementScript : NetworkBehaviour
         //put here if you want to make it only on ground
         if (isGrounded && velocity.y< 0)
         {
-           
-            
-            
             velocity.y = -2f;
         }
         z = Input.GetAxis("Vertical");
@@ -79,5 +74,4 @@ public class movementScript : NetworkBehaviour
 
     }
 
-    
 }
