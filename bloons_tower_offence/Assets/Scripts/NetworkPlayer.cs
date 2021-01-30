@@ -192,7 +192,18 @@ public class NetworkPlayer : NetworkBehaviour
     [Command]
     public void CmdDie() {
         isDead = true;
-        
+
+        if (hasCheese) {
+            hasCheese = false;
+            playerCheese.SetActive(false);
+            GameObject cheese = Instantiate(cheesePrefab, transform.position + new Vector3(0f, 2f, 0f) + (gameObject.transform.forward), Quaternion.identity);
+
+
+            cheese.GetComponent<Rigidbody>().AddForce(gameObject.transform.Find("Camera").transform.forward * 2f, ForceMode.Impulse);
+            NetworkServer.Spawn(cheese);
+
+        }
+
 
         gameObject.GetComponent<CharacterController>().enabled = false;
         gameObject.GetComponent<CapsuleCollider>().enabled = false;
@@ -209,6 +220,11 @@ public class NetworkPlayer : NetworkBehaviour
 
     [ClientRpc]
     public void RpcDie() {
+
+       
+        playerCheese.SetActive(false);
+            
+
         gameObject.GetComponent<CharacterController>().enabled = false;
         gameObject.GetComponent<CapsuleCollider>().enabled = false;
         gameObject.GetComponent<movementScript>().enabled = false;

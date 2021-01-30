@@ -20,6 +20,12 @@ public class GameManager : NetworkBehaviour
 
     public IEnumerator restart() {
         yield return new WaitForSeconds(7);
+        GameObject monke = GameObject.FindGameObjectWithTag("mokey");
+        if(monke != null) {
+            NetworkServer.Destroy(monke);
+        }
+        CustomNetworkManager.SpawnCheese();
+
         foreach (KeyValuePair<string, NetworkPlayer> kv in CustomNetworkManager.players) {
 
 
