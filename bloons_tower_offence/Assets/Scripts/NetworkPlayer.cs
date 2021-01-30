@@ -149,8 +149,10 @@ public class NetworkPlayer : NetworkBehaviour
             
 
         if (isLocalPlayer) {
-            if (health <= 0 && !isDead) {
-                deaths++;
+            if (health <= 0) {
+                if (!isDead) {
+                    deaths++;
+                }
                 isDead = true;
                 CmdDie();
             }
@@ -174,6 +176,7 @@ public class NetworkPlayer : NetworkBehaviour
         Debug.Log(gameObject.name + " " + health.ToString());
         if (health <= 0) {
             if (_id != null) {
+                if(_id != gameObject.GetComponent<NetworkIdentity>().netId.ToString())
                 CustomNetworkManager.players[_id].addPoint();
             }
         }

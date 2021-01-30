@@ -23,9 +23,9 @@ public class rocketScript : NetworkBehaviour
             Collider[] hits = Physics.OverlapSphere(transform.position, 7f);
 
             foreach(var c in hits) {
-                
 
-                if(c.gameObject.tag == "Player" && c.gameObject.GetComponent<NetworkIdentity>().netId.ToString() != shotFrom){
+                //&& c.gameObject.GetComponent<NetworkIdentity>().netId.ToString() != shotFrom
+                if (c.gameObject.tag == "Player" ){
 
                     if(!shot.Contains(c.gameObject.GetComponent<NetworkIdentity>().netId.ToString())) {
                     shot.Add(c.gameObject.GetComponent<NetworkIdentity>().netId.ToString());
