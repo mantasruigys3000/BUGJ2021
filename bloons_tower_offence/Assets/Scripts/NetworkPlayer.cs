@@ -361,7 +361,7 @@ public class NetworkPlayer : NetworkBehaviour
         winsText.text = txt;
     }
 
-<<<<<<< HEAD
+
     [Command]
 
     public void CmdSetName(string _name) {
@@ -369,13 +369,13 @@ public class NetworkPlayer : NetworkBehaviour
 
     }
 
-=======
+
     [ClientRpc]
     public void RpcShootRocket()
     {
         audioSync.playSound(0);
         audioSync.playSound(1);
     }
->>>>>>> 9363badcaaf0b6089dad20d80c9d8a9fc68ca2f1
+
 
 }
