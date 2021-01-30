@@ -3313,6 +3313,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 4cde50a64e633bf459187ec815090816, type: 3}
   - {fileID: 8300000, guid: 0fca21afaa548ca4595fa90645d7509b, type: 3}
   - {fileID: 8300000, guid: c77162c28855c1347bbcf12845a92a6f, type: 3}
+  - {fileID: 8300000, guid: c77162c28855c1347bbcf12845a92a6f, type: 3}
+  - {fileID: 8300000, guid: c77162c28855c1347bbcf12845a92a6f, type: 3}
 --- !u!81 &8947303131765721581
 AudioListener:
   m_ObjectHideFlags: 0
@@ -4740,11 +4742,11 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7295679709675855379}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: c77162c28855c1347bbcf12845a92a6f, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -4841,6 +4843,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7081c3642273d9a4caaa3705b6ecf8c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  footsteps: {fileID: 308948877600784154}
+  player: {fileID: 6171019611660958571}
 --- !u!1 &7773523743937390476
 GameObject:
   m_ObjectHideFlags: 0
