@@ -48,6 +48,8 @@ public class NetworkPlayer : NetworkBehaviour
     public GameObject playerCheese;
     public GameObject rocket;
     public GameObject nail;
+    public GameObject railPrefab;
+
 
 
     [SyncVar]
