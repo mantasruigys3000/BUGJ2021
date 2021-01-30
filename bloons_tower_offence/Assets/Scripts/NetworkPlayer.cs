@@ -307,7 +307,7 @@ public class NetworkPlayer : NetworkBehaviour
 
 
             _nail.GetComponent<Rigidbody>().AddForce(_nail.transform.up * 60f, ForceMode.Impulse);
-            
+            _nail.GetComponent<nailScript>().shotFrom = gameObject.GetComponent<NetworkIdentity>().netId.ToString();
 
             NetworkServer.Spawn(_nail); 
         }

@@ -1,18 +1,31 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Mirror;
 
-public class nailScript : MonoBehaviour
+
+public class nailScript : NetworkBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+    [SyncVar]
+    public string shotFrom;
+
+    private void Start() {
+        StartCoroutine(nameof(destroySelf));
+
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    private void OnTriggerEnter(Collider other) {
+        if(other.gameObject.tag == "Player") {
+            string _id = other.gameObject.GetComponent<NetworkIdentity>().netId.ToString();
+            CustomNetworkManager.players[_id].takeDamage(shotFrom, 3);
+            NetworkServer.Destroy(gameObject);
+
+        }
+    }
+
+    public IEnumerator destroySelf() {
+        yield return new WaitForSeconds(5);
+        NetworkServer.Destroy(gameObject);
+
     }
 }
