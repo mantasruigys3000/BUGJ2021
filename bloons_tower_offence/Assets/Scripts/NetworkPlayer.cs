@@ -349,6 +349,7 @@ public class NetworkPlayer : NetworkBehaviour
     [Command]
     public void CmdShootNail() {
         if(nailAmmo > 0 && canShootNail) {
+            RpcShootNail();
             StartCoroutine(nameof(reloadNail));
             nailAmmo -= 1;
             canShootNail = false;
@@ -414,6 +415,7 @@ public class NetworkPlayer : NetworkBehaviour
     public void CmdShotRay() {
 
         if(rayAmmo > 0) {
+            RpcShootRay();
             rayAmmo -= 1;
             RaycastHit hit;
             if (Physics.Raycast(gameObject.transform.Find("Camera").transform.position, gameObject.transform.Find("Camera").transform.forward, out hit, 100f)) {
@@ -431,5 +433,16 @@ public class NetworkPlayer : NetworkBehaviour
         
     }
 
+    [ClientRpc]
+    public void RpcShootRay()
+    {
+        audioSync.playSound(4);
+    }
+
+    [ClientRpc]
+    public void RpcShootNail()
+    {
+        audioSync.playSound(5);
+    }
 
 }
