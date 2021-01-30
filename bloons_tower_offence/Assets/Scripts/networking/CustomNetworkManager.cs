@@ -76,7 +76,7 @@ public class CustomNetworkManager : NetworkManager {
         
         if (sm != null) {
             //UNCOMMENT ON DEPLOYMENT
-            //sm.connectGameServerToMaster();
+            sm.connectGameServerToMaster();
         }
 
         players = new Dictionary<string, NetworkPlayer>();

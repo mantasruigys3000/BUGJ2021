@@ -60,7 +60,12 @@ public class NetworkPlayer : NetworkBehaviour
     void Start()
     {
         //spawnPoint = new Vector3(-10.6700001f, 2.66000009f, -22.1499996f);
-        playerName = GetComponent<NetworkIdentity>().netId.ToString();
+        //playerName = GetComponent<NetworkIdentity>().netId.ToString();
+        if (isLocalPlayer) {
+            CmdSetName(NameGetter.playerName);
+        }
+        
+
         winsText.text = "";
 
     }
@@ -352,6 +357,13 @@ public class NetworkPlayer : NetworkBehaviour
     [ClientRpc]
     public void RpcSetWinsText(string txt) {
         winsText.text = txt;
+    }
+
+    [Command]
+
+    public void CmdSetName(string _name) {
+        playerName = _name;
+
     }
 
 
