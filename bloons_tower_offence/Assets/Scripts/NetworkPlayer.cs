@@ -50,7 +50,7 @@ public class NetworkPlayer : NetworkBehaviour
     public GameObject nail;
     public GameObject railPrefab;
 
-
+    public ParticleSystem death;
 
     [SyncVar]
     public Vector3 spawnPoint;
@@ -221,12 +221,8 @@ public class NetworkPlayer : NetworkBehaviour
     }
 
     [ClientRpc]
-    public void RpcDie() {
-
-       
+    public void RpcDie() { 
         playerCheese.SetActive(false);
-            
-
         gameObject.GetComponent<CharacterController>().enabled = false;
         gameObject.GetComponent<CapsuleCollider>().enabled = false;
         gameObject.GetComponent<movementScript>().enabled = false;
@@ -333,11 +329,7 @@ public class NetworkPlayer : NetworkBehaviour
             _rocket.GetComponent<Rigidbody>().AddForce(_rocket.transform.up *  30f, ForceMode.Impulse);
             _rocket.GetComponent<rocketScript>().shotFrom = gameObject.GetComponent<NetworkIdentity>().netId.ToString();
 
-            
             NetworkServer.Spawn(_rocket);
-
-
-
         }
     }
 
@@ -383,19 +375,13 @@ public class NetworkPlayer : NetworkBehaviour
 
 
     [Command]
-
     public void CmdSetName(string _name) {
         if( _name != null) {
             playerName = _name;
         } else {
             playerName = playerIndex.ToString();
-
         }
-
-        
-
     }
-
 
     [ClientRpc]
     public void RpcShootRocket()

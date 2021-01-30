@@ -12,6 +12,8 @@ public class rocketScript : NetworkBehaviour
     List<string> shot;
     private audioSync audioSync;
 
+    public ParticleSystem particles;
+
     private void Start()
     {
         audioSync = GameObject.FindGameObjectsWithTag("Player")[0].GetComponent<audioSync>();
@@ -23,6 +25,7 @@ public class rocketScript : NetworkBehaviour
         if (isServer && other.gameObject.tag != "playerRocketGun") {
             Debug.Log("sTEP2");
             RpcPlaySound();
+            Instantiate(particles, other.transform);
             Collider[] hits = Physics.OverlapSphere(transform.position, 7f);
             foreach(var c in hits) {
                 //&& c.gameObject.GetComponent<NetworkIdentity>().netId.ToString() != shotFrom

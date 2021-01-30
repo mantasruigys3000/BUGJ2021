@@ -3138,6 +3138,7 @@ MonoBehaviour:
   winsText: {fileID: 3151148004874215167}
   canShootNail: 1
   canShootRay: 1
+  canShootRocket: 1
   rayGun: {fileID: 8619646450425043081}
   nailGun: {fileID: 7247681467913648464}
   rocketGun: {fileID: 8893919756585448633}
@@ -3147,6 +3148,8 @@ MonoBehaviour:
   playerCheese: {fileID: 4385573605476700688}
   rocket: {fileID: 6227237361999947375, guid: 5e3271d548af55242a88fe1e7c3db3fb, type: 3}
   nail: {fileID: 5503751876191927195, guid: 5bf1acb2d079d454b8301a852fd99ee6, type: 3}
+  railPrefab: {fileID: 0}
+  death: {fileID: 6237553109302029179, guid: 028315ff90f3b77478f6282592e23c74, type: 3}
   spawnPoint: {x: 0, y: 0, z: 0}
 --- !u!114 &2172681566166154197
 MonoBehaviour:
@@ -3313,7 +3316,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: b8e062d1d6bb22742a7bb7a27b212071, type: 3}
   - {fileID: 8300000, guid: 4cde50a64e633bf459187ec815090816, type: 3}
   - {fileID: 8300000, guid: 0fca21afaa548ca4595fa90645d7509b, type: 3}
-  - {fileID: 8300000, guid: c17ca14ad60b8f7479f5fe5402223f5c, type: 3}
+  - {fileID: 8300000, guid: edee943919875484595878d1dc0e438c, type: 3}
   - {fileID: 8300000, guid: 585083d7939a4d34e9bb4e0e98120a5b, type: 3}
 --- !u!81 &8947303131765721581
 AudioListener:
@@ -4856,7 +4859,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: a7b74eaf481ed9141b57af75237b07f4, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 93900fa8a3c3ff640a69b4c45ee56d0b, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.14
   m_Pitch: 1
