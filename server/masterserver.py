@@ -10,6 +10,7 @@ from sys import platform
 
 
 
+global games
 games = []
 
 
@@ -38,6 +39,7 @@ def startGameServer(port,socket,name):
 
 
 def sendgames(socket):
+    global games
     data = json.dumps({"code": 1000,"games" : games})
     socket.send(data.encode());
 
@@ -47,6 +49,8 @@ def sendgames(socket):
 
 
 def dataHandle(socket,data):
+    global games
+
     print(f"got {data} from {socket}")
 
     #data = json.dumps({"lst": [1] })
@@ -54,6 +58,7 @@ def dataHandle(socket,data):
 
     data = json.loads(data)
     if(data["code"] == 500):
+        print("adding game")
         games.append(data)
         print(str(games))
         sendgames(socket)
