@@ -409,7 +409,7 @@ public class NetworkPlayer : NetworkBehaviour
                 if (hit.collider.gameObject.tag == "Player") {
                     string id = hit.collider.gameObject.GetComponent<NetworkIdentity>().netId.ToString();
                     string myId = gameObject.GetComponent<NetworkIdentity>().netId.ToString();
-                    CustomNetworkManager.getPlayer(id).takeDamage(myId);
+                    CustomNetworkManager.getPlayer(id).takeDamage(myId,90);
                 }
 
             }
