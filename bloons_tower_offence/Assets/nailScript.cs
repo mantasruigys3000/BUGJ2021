@@ -15,12 +15,15 @@ public class nailScript : NetworkBehaviour
     }
 
     private void OnTriggerEnter(Collider other) {
-        if(other.gameObject.tag == "Player") {
-            string _id = other.gameObject.GetComponent<NetworkIdentity>().netId.ToString();
-            CustomNetworkManager.players[_id].takeDamage(shotFrom, 3);
-            NetworkServer.Destroy(gameObject);
+        if (isServer) {
+            if(other.gameObject.tag == "Player") {
+                        string _id = other.gameObject.GetComponent<NetworkIdentity>().netId.ToString();
+                        CustomNetworkManager.players[_id].takeDamage(shotFrom, 3);
+                        NetworkServer.Destroy(gameObject);
 
+                    }
         }
+        
     }
 
     public IEnumerator destroySelf() {

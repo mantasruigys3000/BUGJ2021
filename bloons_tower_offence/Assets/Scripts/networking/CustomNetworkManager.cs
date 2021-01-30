@@ -16,14 +16,20 @@ public class CustomNetworkManager : NetworkManager {
     public static Vector3 cheeseSpawn;
     public GameObject _cheesePrefab;
     public static GameObject cheesePrefab;
-
-
+    public bool resartFlag = false;
     
 
 
 
 
 
+
+
+    public override void Start() {
+        base.Start();
+        
+
+    }
 
     public override void Awake() {
         base.Awake();
@@ -69,6 +75,7 @@ public class CustomNetworkManager : NetworkManager {
         base.OnStartServer();
         
         if (sm != null) {
+            //UNCOMMENT ON DEPLOYMENT
             //sm.connectGameServerToMaster();
         }
 
@@ -93,12 +100,49 @@ public class CustomNetworkManager : NetworkManager {
        
         foreach(KeyValuePair<string,NetworkPlayer> kv in players) {
             if(kv.Value.points >= 3) {
-                Debug.Log(kv.Value.playerName + " wins");
+                string txt = kv.Value.playerName + " wins";
+                kv.Value.winsText.text = txt;
+                kv.Value.RpcSetWinsText(txt);
+                //restartGame();
+                GameObject.Find("GameManager").GetComponent<GameManager>().restartGame();
+                 
+
+
             }
         }
     }
 
+    public static void restartGame() {
+       
+    }
+
+    public static IEnumerator restart() {
+        yield return new WaitForSeconds(7);
+        foreach (KeyValuePair<string, NetworkPlayer> kv in players) {
+            kv.Value.isDead = false;
+            kv.Value.health = 100;
+            kv.Value.rayAmmo = 0;
+            kv.Value.nailAmmo = 0;
+            kv.Value.rocketAmmo = 0;
+            kv.Value.chosenWpn = 0;
+
+
+            kv.Value.gameObject.GetComponent<CharacterController>().enabled = true;
+            kv.Value.gameObject.GetComponent<CapsuleCollider>().enabled = true;
+            //gameObject.GetComponent<movementScript>().enabled = true;
+            kv.Value.rayGun.SetActive(false);
+            kv.Value.nailGun.SetActive(false);
+            kv.Value.rocketGun.SetActive(false);
+            kv.Value.model.SetActive(true);
+            kv.Value.RpcRespawn();
+        }
+
+    }
+
+   
+
     public override void OnServerDisconnect(NetworkConnection conn) {
+        takenSides.Remove(players[conn.identity.netId.ToString()].playerIndex);
         players.Remove(conn.identity.netId.ToString());
         base.OnServerDisconnect(conn);
         

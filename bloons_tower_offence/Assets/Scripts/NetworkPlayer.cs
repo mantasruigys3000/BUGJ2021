@@ -33,6 +33,7 @@ public class NetworkPlayer : NetworkBehaviour
 
 
     public List<GameObject> icons;
+    public Text winsText;
     public bool canShootNail = true;
 
 
@@ -60,6 +61,8 @@ public class NetworkPlayer : NetworkBehaviour
     {
         //spawnPoint = new Vector3(-10.6700001f, 2.66000009f, -22.1499996f);
         playerName = GetComponent<NetworkIdentity>().netId.ToString();
+        winsText.text = "";
+
     }
 
     // Update is called once per frame
@@ -146,7 +149,9 @@ public class NetworkPlayer : NetworkBehaviour
             
 
         if (isLocalPlayer) {
-            if (health <= 0) {
+            if (health <= 0 && !isDead) {
+                deaths++;
+                isDead = true;
                 CmdDie();
             }
         }
@@ -179,7 +184,7 @@ public class NetworkPlayer : NetworkBehaviour
     [Command]
     public void CmdDie() {
         isDead = true;
-        deaths++;
+        
 
         gameObject.GetComponent<CharacterController>().enabled = false;
         gameObject.GetComponent<CapsuleCollider>().enabled = false;
@@ -233,6 +238,7 @@ public class NetworkPlayer : NetworkBehaviour
         if (isLocalPlayer) {
             gameObject.GetComponent<movementScript>().enabled = true;
             gameObject.transform.position = spawnPoint;
+            winsText.text = "";
         }
         gameObject.GetComponent<CharacterController>().enabled = true;
         gameObject.GetComponent<CapsuleCollider>().enabled = true;
@@ -326,6 +332,11 @@ public class NetworkPlayer : NetworkBehaviour
                 50f,
                 ForceMode.Impulse
                 );
+    }
+
+    [ClientRpc]
+    public void RpcSetWinsText(string txt) {
+        winsText.text = txt;
     }
 
 
