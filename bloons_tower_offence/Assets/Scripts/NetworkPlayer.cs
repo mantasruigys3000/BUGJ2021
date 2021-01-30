@@ -49,6 +49,8 @@ public class NetworkPlayer : NetworkBehaviour
     public GameObject rocket;
     public GameObject nail;
     public GameObject railPrefab;
+    public ParticleSystem trail;
+
 
     public GameObject death;
 
@@ -193,31 +195,40 @@ public class NetworkPlayer : NetworkBehaviour
 
     [Command]
     public void CmdDie() {
-        isDead = true;
+        if(isDead == false) {
+            isDead = true;
 
 
-        if (hasCheese) {
-            hasCheese = false;
-            playerCheese.SetActive(false);
-            GameObject cheese = Instantiate(cheesePrefab, transform.position + new Vector3(0f, 2f, 0f) + (gameObject.transform.forward), Quaternion.identity);
+
+            if (hasCheese) {
+                hasCheese = false;
+                playerCheese.SetActive(false);
+                GameObject cheese = Instantiate(cheesePrefab, transform.position + new Vector3(0f, 2f, 0f) + (gameObject.transform.forward), Quaternion.identity);
 
 
-            cheese.GetComponent<Rigidbody>().AddForce(gameObject.transform.Find("Camera").transform.forward * 2f, ForceMode.Impulse);
-            NetworkServer.Spawn(cheese);
+                cheese.GetComponent<Rigidbody>().AddForce(gameObject.transform.Find("Camera").transform.forward * 2f, ForceMode.Impulse);
+                NetworkServer.Spawn(cheese);
 
+            }
+
+
+
+            gameObject.GetComponent<CharacterController>().enabled = false;
+            gameObject.GetComponent<CapsuleCollider>().enabled = false;
+            gameObject.GetComponent<movementScript>().enabled = false;
+            rayGun.SetActive(false);
+            nailGun.SetActive(false);
+            rocketGun.SetActive(false);
+            model.SetActive(false);
+            StartCoroutine(nameof(repsawnTimer));
+
+            GameObject d = Instantiate(death, transform.position, Quaternion.identity);
+            NetworkServer.Spawn(d);
+
+
+            RpcDie();
         }
-
-
-
-        gameObject.GetComponent<CharacterController>().enabled = false;
-        gameObject.GetComponent<CapsuleCollider>().enabled = false;
-        gameObject.GetComponent<movementScript>().enabled = false;
-        rayGun.SetActive(false);
-        nailGun.SetActive(false);
-        rocketGun.SetActive(false);
-        model.SetActive(false);
-        StartCoroutine(nameof(repsawnTimer));
-        RpcDie();
+        
     }
 
     [ClientRpc]
@@ -407,9 +418,13 @@ public class NetworkPlayer : NetworkBehaviour
             //GameObject r = Instantiate(railPrefab,
             //    rayGun.transform.Find("gunEnd").transform.position,
             //    gameObject.transform.Find("Camera").transform.rotation
-            //    );
-            //r.GetComponent<Rigidbody>().AddForce(r.transform.forward *  5f, ForceMode.Impulse);
+            ///    );
+            //r.GetComponent<Rigidbody>().AddForce(r.transform.forward *  50f, ForceMode.Impulse);
             //NetworkServer.Spawn(r);
+
+            
+
+
 
 
 
@@ -431,10 +446,17 @@ public class NetworkPlayer : NetworkBehaviour
         
     }
 
+    
+
     [ClientRpc]
     public void RpcShootRay()
     {
         audioSync.playSound(4);
+        ParticleSystem ps = Instantiate(trail, rayGun.transform.Find("gunEnd").transform.position,
+               gameObject.transform.Find("Camera").transform.rotation);
+        ps.GetComponent<Rigidbody>().AddForce(ps.transform.forward * 100f, ForceMode.Impulse);
+
+
     }
 
     [ClientRpc]
