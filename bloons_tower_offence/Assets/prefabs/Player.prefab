@@ -3137,6 +3137,8 @@ MonoBehaviour:
   - {fileID: 4949694259425044525}
   winsText: {fileID: 3151148004874215167}
   canShootNail: 1
+  canShootRay: 1
+  canShootRocket: 1
   rayGun: {fileID: 8619646450425043081}
   nailGun: {fileID: 7247681467913648464}
   rocketGun: {fileID: 8893919756585448633}
@@ -3146,6 +3148,8 @@ MonoBehaviour:
   playerCheese: {fileID: 4385573605476700688}
   rocket: {fileID: 6227237361999947375, guid: 5e3271d548af55242a88fe1e7c3db3fb, type: 3}
   nail: {fileID: 5503751876191927195, guid: 5bf1acb2d079d454b8301a852fd99ee6, type: 3}
+  railPrefab: {fileID: 5950258191377846427, guid: 608053da4f7d6794e895f394d734c2c1,
+    type: 3}
   spawnPoint: {x: 0, y: 0, z: 0}
 --- !u!114 &2172681566166154197
 MonoBehaviour:
