@@ -59,3 +59,8 @@ sysinfo.txt
 # Crashlytics generated file
 crashlytics-build.properties
 
+Builds/bloons_tower_offence_Data/globalgamemanagers
+Builds/bloons_tower_offence_Data/level0
+Builds/bloons_tower_offence_Data/level1
+Builds/bloons_tower_offence_Data/Managed/Assembly-CSharp.dll
+Builds/bloons_tower_offence_Data/sharedassets0.assets
