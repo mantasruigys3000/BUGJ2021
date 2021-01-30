@@ -99,8 +99,9 @@ public class CustomNetworkManager : NetworkManager {
     }
 
     public override void OnServerDisconnect(NetworkConnection conn) {
-        base.OnServerDisconnect(conn);
         players.Remove(conn.identity.netId.ToString());
+        base.OnServerDisconnect(conn);
+        
     }
 
     
