@@ -27,6 +27,9 @@ public class NetworkPlayer : NetworkBehaviour
     public int playerIndex;
     [SyncVar]
     public bool hasCheese;
+    [SyncVar]
+    public int deaths;
+
 
 
     public List<GameObject> icons;
@@ -176,6 +179,7 @@ public class NetworkPlayer : NetworkBehaviour
     [Command]
     public void CmdDie() {
         isDead = true;
+        deaths++;
 
         gameObject.GetComponent<CharacterController>().enabled = false;
         gameObject.GetComponent<CapsuleCollider>().enabled = false;
