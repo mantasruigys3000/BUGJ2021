@@ -238,9 +238,15 @@ public class NetworkPlayer : NetworkBehaviour
    
     [ClientRpc]
     public void RpcRespawn() {
+        gameObject.GetComponent<movementScript>().enabled = false;
+        Debug.Log("RESTART RPC CALLed");
         if (isLocalPlayer) {
-            gameObject.GetComponent<movementScript>().enabled = true;
+            
+            Debug.Log("changing pos");
+
             gameObject.transform.position = spawnPoint;
+            StartCoroutine(nameof(moveOn));
+
             winsText.text = "";
         }
         gameObject.GetComponent<CharacterController>().enabled = true;
@@ -252,9 +258,15 @@ public class NetworkPlayer : NetworkBehaviour
         model.SetActive(true);
     }
 
-    
-    public void addPoint() {
-        points += 1;
+    public IEnumerator moveOn() {
+        yield return new WaitForSeconds(1 / 1000);
+
+        gameObject.GetComponent<movementScript>().enabled = true;
+    }
+
+
+    public void addPoint(int num = 1) {
+        points += num;
         CustomNetworkManager.checkWin();
 
     }

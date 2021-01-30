@@ -18,7 +18,7 @@ public class cheeseDeposit : NetworkBehaviour
                     Debug.Log("Player scored");
                     string _id = collision.gameObject.GetComponent<NetworkIdentity>().netId.ToString();
                     CustomNetworkManager.players[_id].hasCheese = false;
-                    CustomNetworkManager.players[_id].points = CustomNetworkManager.players[_id].points + 5;
+                    CustomNetworkManager.players[_id].addPoint(5);
                     CustomNetworkManager.SpawnCheese();
 
                     

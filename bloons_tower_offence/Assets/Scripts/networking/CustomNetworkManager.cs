@@ -97,6 +97,8 @@ public class CustomNetworkManager : NetworkManager {
     }
 
     public static void checkWin(){
+
+        
        
         foreach(KeyValuePair<string,NetworkPlayer> kv in players) {
             if(kv.Value.points >= 3) {

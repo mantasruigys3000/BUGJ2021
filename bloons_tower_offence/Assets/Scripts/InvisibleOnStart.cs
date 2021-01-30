@@ -7,7 +7,8 @@ public class InvisibleOnStart : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        gameObject.SetActive(false);
+        gameObject.GetComponent<MeshRenderer>().enabled = false;
+
 
     }
 
