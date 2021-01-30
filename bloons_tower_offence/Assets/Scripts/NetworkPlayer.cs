@@ -30,15 +30,11 @@ public class NetworkPlayer : NetworkBehaviour
     [SyncVar]
     public int deaths;
 
-
+    private audioSync audioSync;
 
     public List<GameObject> icons;
     public Text winsText;
     public bool canShootNail = true;
-
-
-
-
 
     public GameObject rayGun;
     public GameObject nailGun;
@@ -49,13 +45,8 @@ public class NetworkPlayer : NetworkBehaviour
     public GameObject rocket;
     public GameObject nail;
 
-
-
     [SyncVar]
     public Vector3 spawnPoint;
-
-
-
 
     void Start()
     {
@@ -67,6 +58,8 @@ public class NetworkPlayer : NetworkBehaviour
         
 
         winsText.text = "";
+        audioSync = this.GetComponent<audioSync>();
+     
 
     }
 
@@ -102,13 +95,13 @@ public class NetworkPlayer : NetworkBehaviour
                 icons[2].GetComponent<Image>().color = new Vector4(icons[2].GetComponent<Image>().color.r, icons[2].GetComponent<Image>().color.g, icons[2].GetComponent<Image>().color.b, 0);
             }
 
-            if (Input.GetKeyDown(KeyCode.Alpha1)) {
+            if (Input.GetKeyDown(KeyCode.Alpha1) && rayAmmo > 0) {
                 CmdchangeWeapon(1);
             }
-            if (Input.GetKeyDown(KeyCode.Alpha2)) {
+            if (Input.GetKeyDown(KeyCode.Alpha2) && nailAmmo > 0) {
                 CmdchangeWeapon(2);
             }
-            if (Input.GetKeyDown(KeyCode.Alpha3)) {
+            if (Input.GetKeyDown(KeyCode.Alpha3) && rocketAmmo > 0) {
                 CmdchangeWeapon(3);
             }
 
@@ -193,6 +186,7 @@ public class NetworkPlayer : NetworkBehaviour
     public void CmdDie() {
         isDead = true;
 
+
         if (hasCheese) {
             hasCheese = false;
             playerCheese.SetActive(false);
@@ -205,6 +199,7 @@ public class NetworkPlayer : NetworkBehaviour
         }
 
 
+
         gameObject.GetComponent<CharacterController>().enabled = false;
         gameObject.GetComponent<CapsuleCollider>().enabled = false;
         gameObject.GetComponent<movementScript>().enabled = false;
@@ -213,8 +208,6 @@ public class NetworkPlayer : NetworkBehaviour
         rocketGun.SetActive(false);
         model.SetActive(false);
         StartCoroutine(nameof(repsawnTimer));
-        
-
         RpcDie();
     }
 
@@ -298,24 +291,17 @@ public class NetworkPlayer : NetworkBehaviour
             hasCheese = false;
             playerCheese.SetActive(false);
             GameObject cheese = Instantiate(cheesePrefab,transform.position + new Vector3(0f,2f,0f) + (gameObject.transform.forward),Quaternion.identity);
-            
-
             cheese.GetComponent<Rigidbody>().AddForce(gameObject.transform.Find("Camera").transform.forward * 10f, ForceMode.Impulse);
             NetworkServer.Spawn(cheese);
-
         }
-        
-
-
-
-
     }
 
     [Command]
     public void CmdShootRocket() {
         if(rocketAmmo > 0) {
             rocketAmmo -= 1;
-            
+
+            RpcShootRocket(); 
             GameObject _rocket = Instantiate(
                 rocket,
                 rocketGun.transform.Find("gunEnd").transform.position,
@@ -375,6 +361,7 @@ public class NetworkPlayer : NetworkBehaviour
         winsText.text = txt;
     }
 
+<<<<<<< HEAD
     [Command]
 
     public void CmdSetName(string _name) {
@@ -382,5 +369,13 @@ public class NetworkPlayer : NetworkBehaviour
 
     }
 
+=======
+    [ClientRpc]
+    public void RpcShootRocket()
+    {
+        audioSync.playSound(0);
+        audioSync.playSound(1);
+    }
+>>>>>>> 9363badcaaf0b6089dad20d80c9d8a9fc68ca2f1
 
 }

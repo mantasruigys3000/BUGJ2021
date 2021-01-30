@@ -10,20 +10,21 @@ public class rocketScript : NetworkBehaviour
     public string shotFrom;
 
     List<string> shot;
+    private audioSync audioSync;
 
-
+    private void Start()
+    {
+        audioSync = GameObject.FindGameObjectsWithTag("Player")[0].GetComponent<audioSync>();
+        Debug.Log("sTEP1");
+    }
 
     private void OnTriggerEnter(Collider other) {
         shot = new List<string>();
-
         if (isServer && other.gameObject.tag != "playerRocketGun") {
-
-            
-
+            Debug.Log("sTEP2");
+            RpcPlaySound();
             Collider[] hits = Physics.OverlapSphere(transform.position, 7f);
-
             foreach(var c in hits) {
-
                 //&& c.gameObject.GetComponent<NetworkIdentity>().netId.ToString() != shotFrom
                 if (c.gameObject.tag == "Player" ){
 
@@ -39,22 +40,10 @@ public class rocketScript : NetworkBehaviour
                     CustomNetworkManager.players[hitId].takeDamage(shotFrom, damage);
 
                     }
-                    
-
-
-
-
                 }
             }
-
             NetworkServer.Destroy(gameObject);
-
-        }
-
-        
-
-
-        
+        }    
     }
 
     void OnDrawGizmosSelected() {
@@ -66,5 +55,12 @@ public class rocketScript : NetworkBehaviour
         Gizmos.DrawSphere(transform.position, 5f);
     }
 
+
+    [ClientRpc]
+    void RpcPlaySound()
+    {
+        Debug.Log("sTEP3");
+        audioSync.playSound(2);
+    }
 
 }
