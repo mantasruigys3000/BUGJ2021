@@ -403,6 +403,18 @@ public class NetworkPlayer : NetworkBehaviour
         if(rayAmmo > 0) {
             RpcShootRay();
             rayAmmo -= 1;
+
+            //GameObject r = Instantiate(railPrefab,
+            //    rayGun.transform.Find("gunEnd").transform.position,
+            //    gameObject.transform.Find("Camera").transform.rotation
+            //    );
+            //r.GetComponent<Rigidbody>().AddForce(r.transform.forward *  5f, ForceMode.Impulse);
+            //NetworkServer.Spawn(r);
+
+
+
+
+
             RaycastHit hit;
             if (Physics.Raycast(gameObject.transform.Find("Camera").transform.position, gameObject.transform.Find("Camera").transform.forward, out hit, 100f)) {
 
