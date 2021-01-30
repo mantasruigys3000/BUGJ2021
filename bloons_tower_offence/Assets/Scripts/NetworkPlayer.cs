@@ -35,6 +35,8 @@ public class NetworkPlayer : NetworkBehaviour
     public List<GameObject> icons;
     public Text winsText;
     public bool canShootNail = true;
+    public bool canShootRay = true;
+
 
     public GameObject rayGun;
     public GameObject nailGun;
@@ -44,6 +46,7 @@ public class NetworkPlayer : NetworkBehaviour
     public GameObject playerCheese;
     public GameObject rocket;
     public GameObject nail;
+
 
     [SyncVar]
     public Vector3 spawnPoint;
@@ -135,6 +138,8 @@ public class NetworkPlayer : NetworkBehaviour
             if (Input.GetMouseButtonDown(0)) {
                 if(chosenWpn == 3) {
                     CmdShootRocket();
+                }else if (chosenWpn == 1) {
+                    CmdShotRay();
                 }
             }  
             if (Input.GetMouseButton(0)) {
@@ -389,6 +394,27 @@ public class NetworkPlayer : NetworkBehaviour
     public void RpcDisableMove() {
         gameObject.GetComponent<movementScript>().enabled = false;
         gameObject.GetComponent<CharacterController>().enabled = false;
+    }
+
+    [Command]
+    public void CmdShotRay() {
+
+        if(rayAmmo > 0) {
+            rayAmmo -= 1;
+            RaycastHit hit;
+            if (Physics.Raycast(gameObject.transform.Find("Camera").transform.position, gameObject.transform.Find("Camera").transform.forward, out hit, 100f)) {
+
+                Debug.Log(hit.collider.gameObject.name);
+
+                if (hit.collider.gameObject.tag == "Player") {
+                    string id = hit.collider.gameObject.GetComponent<NetworkIdentity>().netId.ToString();
+                    string myId = gameObject.GetComponent<NetworkIdentity>().netId.ToString();
+                    CustomNetworkManager.getPlayer(id).takeDamage(myId);
+                }
+
+            }
+        }
+        
     }
 
 

@@ -9,12 +9,12 @@ EditorBuildSettings:
     path: Assets/Scenes/menus/start_lobby.unity
     guid: b7e930cb7d63c6241949b91c4c424cde
   - enabled: 1
+    path: Assets/Scenes/menus/TeoScene 2.unity
+    guid: 26fc92447c661144fb85c9c0b6d6c62d
+  - enabled: 0
     path: Assets/Scenes/menus/TeoScene 1.unity
     guid: edf1f2a6804ce354ab17318fc18158c9
   - enabled: 0
     path: Assets/Scenes/TeoMenu.unity
     guid: 2ed025b8c6383844a85301d7e505ac8b
-  - enabled: 0
-    path: Assets/Scenes/menus/TeoScene 2.unity
-    guid: 26fc92447c661144fb85c9c0b6d6c62d
   m_configObjects: {}
