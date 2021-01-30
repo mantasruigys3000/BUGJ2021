@@ -427,7 +427,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 1d4734bcc82be1e4e8d5f313048de3a0,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: -90
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 1d4734bcc82be1e4e8d5f313048de3a0,
         type: 3}
@@ -530,25 +530,6 @@ MonoBehaviour:
   serverOnly: 0
   m_AssetId: 1d4734bcc82be1e4e8d5f313048de3a0
   hasSpawned: 0
---- !u!95 &29797542
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 29797536}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: c573a49c970a55b49bcfd9cbb929bfda, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &30691351
 GameObject:
   m_ObjectHideFlags: 0
@@ -7502,7 +7483,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh17982
+  m_Name: pb_Mesh112064
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
