@@ -439,7 +439,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1463072516}
   - component: {fileID: 1463072515}
-  - component: {fileID: 1463072514}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -447,14 +446,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &1463072514
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1463072513}
-  m_Enabled: 1
 --- !u!20 &1463072515
 Camera:
   m_ObjectHideFlags: 0
@@ -468,7 +459,7 @@ Camera:
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
-  m_FOVAxisMode: 0
+  m_FOVAxisMode: 1
   m_SensorSize: {x: 36, y: 24}
   m_LensShift: {x: 0, y: 0}
   m_FocalLength: 50
