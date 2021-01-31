@@ -18,7 +18,7 @@ public class nailScript : NetworkBehaviour
         if (isServer) {
             if(other.gameObject.tag == "Player") {
                         string _id = other.gameObject.GetComponent<NetworkIdentity>().netId.ToString();
-                        CustomNetworkManager.players[_id].takeDamage(shotFrom, 3);
+                        CustomNetworkManager.players[_id].takeDamage(shotFrom, 15);
                         NetworkServer.Destroy(gameObject);
 
                     }
