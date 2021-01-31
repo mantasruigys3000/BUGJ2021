@@ -15,6 +15,8 @@ public class runAudio : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+
         bool isGrounded = player.GetComponent<movementScript>().isGrounded;
         if ((Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.W)) && isGrounded)
         {

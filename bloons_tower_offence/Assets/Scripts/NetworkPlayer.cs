@@ -50,6 +50,7 @@ public class NetworkPlayer : NetworkBehaviour
     public GameObject nail;
     public GameObject railPrefab;
     public ParticleSystem trail;
+    public GameObject soundtrack;
 
 
     public GameObject death;
@@ -63,6 +64,10 @@ public class NetworkPlayer : NetworkBehaviour
         //playerName = GetComponent<NetworkIdentity>().netId.ToString();
         if (isLocalPlayer) {
             CmdSetName(NameGetter.playerName);
+        }
+        else
+        {
+            soundtrack.SetActive(false);
         }
         
 

@@ -35,7 +35,11 @@ public class enemyName : NetworkBehaviour
                 nameTag.GetComponent<Text>().text = hit.collider.gameObject.GetComponent<NetworkPlayer>().playerName;
                 nameTag.GetComponent<Text>().color= new Vector4(nameTag.GetComponent<Text>().color.r, nameTag.GetComponent<Text>().color.g, nameTag.GetComponent<Text>().color.b, 155);
             }
-            
+            else
+            {
+                nameTag.GetComponent<Text>().color = new Vector4(nameTag.GetComponent<Text>().color.r, nameTag.GetComponent<Text>().color.g, nameTag.GetComponent<Text>().color.b, 0);
+            }
+
 
         }
         else
@@ -56,7 +60,11 @@ public class enemyName : NetworkBehaviour
                 nameTag.GetComponent<Text>().text = hit.collider.gameObject.GetComponent<NetworkPlayer>().playerName;
                 nameTag.GetComponent<Text>().color = new Vector4(nameTag.GetComponent<Text>().color.r, nameTag.GetComponent<Text>().color.g, nameTag.GetComponent<Text>().color.b, 155);
             }
-            
+            else
+            {
+                nameTag.GetComponent<Text>().color = new Vector4(nameTag.GetComponent<Text>().color.r, nameTag.GetComponent<Text>().color.g, nameTag.GetComponent<Text>().color.b, 0);
+            }
+
 
         }
         else
