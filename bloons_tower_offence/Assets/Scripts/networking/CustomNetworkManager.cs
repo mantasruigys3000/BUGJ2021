@@ -76,7 +76,7 @@ public class CustomNetworkManager : NetworkManager {
         
         if (sm != null) {
             //UNCOMMENT ON DEPLOYMENT
-            //sm.connectGameServerToMaster();
+            sm.connectGameServerToMaster();
         }
 
         players = new Dictionary<string, NetworkPlayer>();
@@ -101,7 +101,7 @@ public class CustomNetworkManager : NetworkManager {
         
        
         foreach(KeyValuePair<string,NetworkPlayer> kv in players) {
-            if(kv.Value.points >= 3) {
+            if(kv.Value.points >= 20) {
                 string txt = kv.Value.playerName + " wins";
                 kv.Value.winsText.text = txt;
                 kv.Value.RpcSetWinsText(txt);
