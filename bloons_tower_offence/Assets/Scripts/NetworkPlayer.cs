@@ -30,6 +30,8 @@ public class NetworkPlayer : NetworkBehaviour
     [SyncVar]
     public int deaths;
 
+    public List<Material> mats;
+
     private audioSync audioSync;
 
     public List<GameObject> icons;
@@ -69,7 +71,9 @@ public class NetworkPlayer : NetworkBehaviour
         {
             soundtrack.SetActive(false);
         }
-        
+
+        transform.Find("player_model_001").transform.Find("body_geo").GetComponent<MeshRenderer>().material = mats[playerIndex];
+
 
         winsText.text = "";
         audioSync = this.GetComponent<audioSync>();

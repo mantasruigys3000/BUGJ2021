@@ -17,6 +17,8 @@ public class CustomNetworkManager : NetworkManager {
     public GameObject _cheesePrefab;
     public static GameObject cheesePrefab;
     public bool resartFlag = false;
+
+    public List<Material> mats;
     
 
 
@@ -52,6 +54,9 @@ public class CustomNetworkManager : NetworkManager {
         Transform startPos = GetStartPosition();
     
         GameObject player = Instantiate(playerPrefab, spawns[index], Quaternion.identity); ;
+        //player.
+       
+
 
         NetworkServer.AddPlayerForConnection(conn, player);
         players.Add(conn.identity.netId.ToString(), player.GetComponent<NetworkPlayer>());
@@ -104,7 +109,19 @@ public class CustomNetworkManager : NetworkManager {
             if(kv.Value.points >= 20) {
                 string txt = kv.Value.playerName + " wins";
                 kv.Value.winsText.text = txt;
-                kv.Value.RpcSetWinsText(txt);
+                foreach (KeyValuePair<string, NetworkPlayer> kvv in players) {
+
+                    if (kvv.Value.isServer) {
+                        kvv.Value.RpcSetWinsText(txt);
+
+                    }
+                }
+
+
+
+                    
+
+                    kv.Value.RpcSetWinsText(txt);
                 //restartGame();
                 GameObject.Find("GameManager").GetComponent<GameManager>().restartGame();
                  
